@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: './salte-auth-angular.js',
+  entry: './salte-auth-angular.module.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'salte-auth-angular.js',
@@ -12,11 +12,17 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: [{
-    angular: {
+    'angular': {
       root: 'angular',
       commonjs2: 'angular',
       commonjs: 'angular',
       amd: 'angular'
+    },
+    'salte-auth': {
+      root: 'salte-auth',
+      commonjs2: 'salte-auth',
+      commonjs: 'salte-auth',
+      amd: 'salte-auth'
     }
   }],
   devtool: 'source-map',

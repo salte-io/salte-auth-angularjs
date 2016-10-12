@@ -2,7 +2,7 @@
   "name": "salte-auth-angular",
   "version": "0.0.0-semantically-released.0",
   "main": "dist/salte-auth-angular.js",
-  "description": "Test",
+  "description": "Provides OpenID Connect support to AngularJS applications through the addition of a simple configuration.",
   "homepage": "https://github.com/salte-io/salte-auth-angular",
   "bugs": "https://github.com/salte-io/salte-auth-angular/issues",
   "contributors": [
@@ -17,25 +17,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/salte-io/salte-auth.git"
+    "url": "https://github.com/salte-io/salte-auth-angular.git"
   },
   "scripts": {
-    "test": "jasmine tests/salte-auth-angular.spec.js",
+    "test": "karma start --single-run",
     "build": "webpack --progress --colors -p",
     "tdd": "karma start",
     "check-coverage": "istanbul check-coverage --statements 93 --branches 89 --functions 92 --lines 92",
     "report-coverage": "coveralls < coverage/lcov.info",
-    "publish-latest": "publish-latest --user-email dave+salte-bot@salte.io --user-name salte-bot",
+    "publish-latest": "publish-latest --user-email nick+salte-bot@salte.io --user-name salte-bot",
     "semantic-release": "semantic-release pre && npm run build && npm publish && npm run publish-latest && semantic-release post"
   },
   "license": "MIT",
+  "dependencies": {
+    "salte-auth": "^1.0.0"
+  },
   "peerDependencies": {
-    "angular": "^1.5.8",
-    "angular-resource": "^1.5.8",
-    "angular-route": "^1.5.8",
-    "angular-ui-router": "^0.3.1"
+    "angular": "^1.5.8"
   },
   "devDependencies": {
+    "angular-route": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
     "angular-mocks": "^1.5.8",
     "babel-core": "6.13.2",
     "babel-loader": "6.2.5",
@@ -70,8 +72,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "salte-auth": "^1.0.0"
   }
 }
