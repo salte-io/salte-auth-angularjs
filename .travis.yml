@@ -8,14 +8,15 @@ cache:
 branches:
   only:
     - master
-notifications:
-  email: false
 before_script:
   - npm prune
 script:
-  - npm run test
+  # TODO: Add Tests
+  # - npm run test
   - npm run build
 after_success:
 # TODO: Add coverage support
 #   - npm run report-coverage
   - npm run semantic-release
+notifications:
+  email: change
