@@ -1,0 +1,51 @@
+import uiRouter from 'angular-ui-router';
+import salteAuthAngular from '../src/salte-auth-angular.module.js';
+
+// Test app Ui-Router
+var uiRouterApp = angular.module("UIRouterApp", [uiRouter, salteAuthAngular]);
+uiRouterApp.config(($stateProvider, $urlRouterProvider, $httpProvider, salteAuthServiceProvider) => {
+  $stateProvider.state('settings', { url: '/settings',
+                                     templateUrl: 'settings.html'
+                                   })
+                .state('settings.profile', { url: '/profile',
+                                             templateUrl: 'profile.html'
+                                   })
+                .state('settings.profile.name', { url: '/name',
+                                                  templateUrl: 'name.html'
+                                                })
+                .state('settings.profile.email', { url: '/email',
+                                                   templateUrl: 'email.html'
+                                                 })
+                .state('settings.account', { parent: 'settings',
+                                             url: '/account/Id/:accountId',
+                                             templateUrl: function(stateParams) {
+                                               if (stateParams.accountId === 'testId')
+                                                 return 'account.html';
+                                             }
+                                           })
+                .state('settings.account.name', { parent: 'settings.account',
+                                                  url: '/name/Name/:accountName',
+                                                  templateUrl: function(stateParams) {
+                                                    if (stateParams.accountName === 'testName')
+                                                      return 'name.html';
+                                                  }
+                                                })
+                .state('settings.account.email', { url: '/email',
+                                                   templateUrl: 'email.html'
+                                                 });
+  $urlRouterProvider.otherwise('/settings');
+  var endpoints = {};
+
+  salteAuthServiceProvider.init({
+    instance: 'https://identity.provider.com/',
+    clientId: 'clientid123',
+    loginResource: 'loginResource123',
+    redirectUri: 'https://myapp.com/page',
+    endpoints: endpoints
+  },
+    $httpProvider // pass http provider to inject request interceptor to attach tokens
+  );
+});
+
+uiRouterApp.controller('StateCtrl', ['$scope', '$location', 'salteAuthService', function($scope, $location, salteAuthService) {}]);
+export default uiRouterApp.name;

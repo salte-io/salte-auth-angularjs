@@ -325,7 +325,8 @@ export default function() {
       },
       verbose: function(message) {
         salteAuth.verbose(message);
-      }
+      },
+      salteAuth: salteAuth
     };
   };
 }
