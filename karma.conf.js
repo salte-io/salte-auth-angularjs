@@ -5,8 +5,7 @@ module.exports = function(config) {
     basePath: '',
 
     frameworks: [
-      'jasmine',
-      'sinon'
+      'jasmine'
     ],
 
     files: [

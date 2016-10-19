@@ -11,12 +11,10 @@ branches:
 before_script:
   - npm prune
 script:
-  # TODO: Add Tests
-  # - npm run test
-  - npm run build
+  - npm run eslint
+  - npm run test
 after_success:
-# TODO: Add coverage support
-#   - npm run report-coverage
+  - npm run report-coverage
   - npm run semantic-release
 notifications:
   email: change
