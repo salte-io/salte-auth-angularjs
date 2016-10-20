@@ -221,12 +221,12 @@ describe('angular ngRoute tests', function() {
     $window.parent.AuthenticationContext = (function() {
       return {
         callback: function() {},
-        _renewStates: ['4343']
+        _renewStates: ['4343'],
+        callBackMappedToRenewStates: []
       };
     })();
 
-    $window.parent.callBackMappedToRenewStates = [];
-    $window.parent.callBackMappedToRenewStates['4343'] = function(error, token) {
+    $window.parent.AuthenticationContext.callBackMappedToRenewStates['4343'] = function(error, token) {
       expect(error).toBe('renewfailed');
     };
     $window.location.hash = 'error=sample&error_description=renewfailed&state=4343';
@@ -237,11 +237,12 @@ describe('angular ngRoute tests', function() {
     window.parent.AuthenticationContext = (function() {
       return {
         callback: function() {},
-        _renewStates: ['4343']
+        _renewStates: ['4343'],
+        callBackMappedToRenewStates: []
       };
     })();
-    window.parent.callBackMappedToRenewStates = {};
-    window.parent.callBackMappedToRenewStates['4343'] = function(error, token) {
+
+    window.parent.AuthenticationContext.callBackMappedToRenewStates['4343'] = function(error, token) {
       expect(error).toBe('');
       expect(token).toBe('newAccessToken123');
     };
@@ -253,11 +254,12 @@ describe('angular ngRoute tests', function() {
     window.parent.AuthenticationContext = (function() {
       return {
         callback: function() {},
-        _renewStates: ['4343']
+        _renewStates: ['4343'],
+        callBackMappedToRenewStates: []
       };
     })();
-    window.parent.callBackMappedToRenewStates = {};
-    window.parent.callBackMappedToRenewStates['4343'] = function(error, token) {
+
+    window.parent.AuthenticationContext.callBackMappedToRenewStates['4343'] = function(error, token) {
       expect(error).toBe('Invalid id_token. id_token: newIdToken123');
       expect(token).toBe('newIdToken123');
     };
@@ -269,11 +271,12 @@ describe('angular ngRoute tests', function() {
     window.parent.AuthenticationContext = (function() {
       return {
         callback: 'callback',
-        _renewStates: ['1234']
+        _renewStates: ['1234'],
+        callBackMappedToRenewStates: []
       };
     })();
-    window.parent.callBackMappedToRenewStates = {};
-    window.parent.callBackMappedToRenewStates['1234'] = 'callback';
+
+    window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
     var mockInvalidClientIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnQxMjMiLCJuYW1lIjoiSm9obiBEb2UiLCJ1cG4iOiJqb2huQGVtYWlsLmNvbSJ9.zNX4vfLzlbFeKHZ9BMN3sYLtEEE-0o1RoL4NUhXz-l8';
     window.location.hash = 'id_token=' + mockInvalidClientIdToken + '&state=1234';
     spyOn($rootScope, '$broadcast').and.callThrough();
@@ -289,11 +292,12 @@ describe('angular ngRoute tests', function() {
     window.parent.AuthenticationContext = (function() {
       return {
         callback: 'callback',
-        _renewStates: ['1234']
+        _renewStates: ['1234'],
+        callBackMappedToRenewStates: []
       };
     })();
-    window.parent.callBackMappedToRenewStates = {};
-    window.parent.callBackMappedToRenewStates['1234'] = 'callback';
+
+    window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
     var mockIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnRpZDEyMyIsIm5hbWUiOiJKb2huIERvZSIsInVwbiI6ImpvaG5AZW1haWwuY29tIiwibm9uY2UiOm51bGx9.DLCO6yIWhnNBYfHH8qFPswcH4M2Alpjn6AZy7K6HENY';
     window.location.hash = 'id_token=' + mockIdToken + '&state=1234';
     spyOn($rootScope, '$broadcast').and.callThrough();
@@ -311,11 +315,12 @@ describe('angular ngRoute tests', function() {
     window.parent.AuthenticationContext = (function() {
       return {
         callback: 'callback',
-        _renewStates: ['1234']
+        _renewStates: ['1234'],
+        callBackMappedToRenewStates: []
       };
     })();
-    window.parent.callBackMappedToRenewStates = {};
-    window.parent.callBackMappedToRenewStates['1234'] = 'callback';
+
+    window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
     var loginResourceOldValue = salteAuthService.config.loginResource;
     salteAuthService.config.loginResource = null;
     window.location.hash = 'hash';
