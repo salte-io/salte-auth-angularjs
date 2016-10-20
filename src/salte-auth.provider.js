@@ -63,7 +63,7 @@ export default function() {
         // Return to callback if it is sent from iframe
         if (requestInfo.stateMatch) {
           if (requestInfo.requestType === salteAuth.REQUEST_TYPE.RENEW_TOKEN) {
-            var callback = $window.parent.callBackMappedToRenewStates[requestInfo.stateResponse];
+            var callback = $window.parent.AuthenticationContext.callBackMappedToRenewStates[requestInfo.stateResponse];
             // since this is a token renewal request in iFrame, we don't need to proceed with the location change.
             event.preventDefault();
 
