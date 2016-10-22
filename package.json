@@ -20,7 +20,7 @@
     "url": "https://github.com/salte-io/salte-auth-angular.git"
   },
   "scripts": {
-    "lint": "eslint src/*.js tests/specs/*.spec.js",
+    "lint": "eslint src/**/*.js tests/**/*.js",
     "test": "karma start --single-run",
     "test:sauce": "karma start karma.ci.conf.js",
     "tdd": "karma start",
@@ -32,7 +32,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "salte-auth": "^1.0.3"
+    "salte-auth": "1.0.7"
   },
   "peerDependencies": {
     "angular": "^1.5.8"
@@ -64,12 +64,9 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "1.8.0",
     "ng-annotate-loader": "0.2.0",
-    "phantomjs-prebuilt": "2.1.13",
     "publish-latest": "1.1.2",
     "semantic-release": "4.3.5",
-    "webpack": "1.13.2",
-    "webpack-dev-server": "1.16.2",
-    "webpack-stream": "3.2.0"
+    "webpack": "1.13.2"
   },
   "config": {
     "commitizen": {
