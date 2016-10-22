@@ -1,7 +1,7 @@
 import ngRouteApp from '../ngRouteApp.js';
 
 describe('angular ngRoute tests', function() {
-  var $scope, $httpBackend, salteAuthService, $rootScope, $controller, $q, $window, $route, $location;
+  let $scope, $httpBackend, salteAuthService, $rootScope, $controller, $q, $window, $route, $location;
 
   beforeEach(angular.mock.module(ngRouteApp));
 
@@ -33,7 +33,7 @@ describe('angular ngRoute tests', function() {
     };
 
     salteAuthService.acquireToken = function(resource) {
-      var token = '';
+      let token = '';
       if (resource === 'resource1') {
         token = 'RenewToken3434';
       }
@@ -74,7 +74,7 @@ describe('angular ngRoute tests', function() {
     $scope.taskCall();
     $httpBackend.flush();
 
-    var task = $scope.task;
+    let task = $scope.task;
     expect(task.name).toBe('TODOItem1');
   });
 
@@ -88,7 +88,7 @@ describe('angular ngRoute tests', function() {
     $scope.itemCall();
     $httpBackend.flush();
 
-    var task = $scope.item;
+    let task = $scope.item;
     expect(task.itemName).toBe('ItemWithoutAuth');
   });
 
@@ -146,7 +146,7 @@ describe('angular ngRoute tests', function() {
     $scope.taskCall5();
     $httpBackend.flush();
 
-    var task = $scope.task;
+    let task = $scope.task;
     expect(task.name).toBe('TODOItem2');
   });
 
@@ -163,7 +163,7 @@ describe('angular ngRoute tests', function() {
     $scope.itemCall();
     $httpBackend.flush();
 
-    var task = $scope.item;
+    let task = $scope.item;
     expect(task.itemName).toBe('ItemWithoutAuth');
   });
 
@@ -277,7 +277,7 @@ describe('angular ngRoute tests', function() {
     })();
 
     window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
-    var mockInvalidClientIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnQxMjMiLCJuYW1lIjoiSm9obiBEb2UiLCJ1cG4iOiJqb2huQGVtYWlsLmNvbSJ9.zNX4vfLzlbFeKHZ9BMN3sYLtEEE-0o1RoL4NUhXz-l8';
+    let mockInvalidClientIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnQxMjMiLCJuYW1lIjoiSm9obiBEb2UiLCJ1cG4iOiJqb2huQGVtYWlsLmNvbSJ9.zNX4vfLzlbFeKHZ9BMN3sYLtEEE-0o1RoL4NUhXz-l8';
     window.location.hash = 'id_token=' + mockInvalidClientIdToken + '&state=1234';
     spyOn($rootScope, '$broadcast').and.callThrough();
     $scope.$on('adal:loginFailure', function(event, message) {
@@ -298,7 +298,7 @@ describe('angular ngRoute tests', function() {
     })();
 
     window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
-    var mockIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnRpZDEyMyIsIm5hbWUiOiJKb2huIERvZSIsInVwbiI6ImpvaG5AZW1haWwuY29tIiwibm9uY2UiOm51bGx9.DLCO6yIWhnNBYfHH8qFPswcH4M2Alpjn6AZy7K6HENY';
+    let mockIdToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnRpZDEyMyIsIm5hbWUiOiJKb2huIERvZSIsInVwbiI6ImpvaG5AZW1haWwuY29tIiwibm9uY2UiOm51bGx9.DLCO6yIWhnNBYfHH8qFPswcH4M2Alpjn6AZy7K6HENY';
     window.location.hash = 'id_token=' + mockIdToken + '&state=1234';
     spyOn($rootScope, '$broadcast').and.callThrough();
     $scope.$on('adal:loginSuccess', function(event, message) {
@@ -321,7 +321,7 @@ describe('angular ngRoute tests', function() {
     })();
 
     window.parent.AuthenticationContext.callBackMappedToRenewStates['1234'] = 'callback';
-    var loginResourceOldValue = salteAuthService.config.loginResource;
+    let loginResourceOldValue = salteAuthService.config.loginResource;
     salteAuthService.config.loginResource = null;
     window.location.hash = 'hash';
     spyOn($rootScope, '$broadcast').and.callThrough();
@@ -360,9 +360,9 @@ describe('angular ngRoute tests', function() {
 
   it('tests route change handler', function() {
     spyOn(salteAuthService.salteAuth, 'promptUser');
-    var todoRoute = $route.routes['/todoList'];
-    var homeRoute = $route.routes['/home'];
-    var aboutRoute = $route.routes['/about'];
+    let todoRoute = $route.routes['/todoList'];
+    let homeRoute = $route.routes['/home'];
+    let aboutRoute = $route.routes['/about'];
 
     $location.url('/todoList');
     $scope.$apply();
@@ -388,8 +388,8 @@ describe('angular ngRoute tests', function() {
     Logging.log = function(message) {
       $window.logMessage = message;
     };
-    salteAuthService.info("test message");
-    expect($window.logMessage).toContain("test message");
+    salteAuthService.info('test message');
+    expect($window.logMessage).toContain('test message');
     expect(Logging.level).toEqual(2);
   });
 });
