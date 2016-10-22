@@ -25,7 +25,7 @@ describe('angular-ui-router tests', () => {
   }));
 
   afterEach(function() {
-    $window.parent = {};
+    $window.parent.AuthenticationContext = null;
     $window.AuthenticationContext = null;
   });
 
