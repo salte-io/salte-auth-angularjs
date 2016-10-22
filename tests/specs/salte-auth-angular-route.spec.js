@@ -55,7 +55,7 @@ describe('angular ngRoute tests', function() {
   }));
 
   afterEach(function() {
-    $window.parent = {};
+    $window.parent.AuthenticationContext = null;
     $window.AuthenticationContext = null;
   });
 
