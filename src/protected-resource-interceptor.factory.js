@@ -4,14 +4,14 @@ export default function ProtectedResourceInterceptor(salteAuthService, $q, $root
     request: function(config) {
       if (config) {
         config.headers = config.headers || {};
-        var resource = salteAuthService.getResourceForEndpoint(config.url);
+        let resource = salteAuthService.getResourceForEndpoint(config.url);
         salteAuthService.verbose('Url: ' + config.url + ' maps to resource: ' + resource);
 
         if (resource === null) {
           return config;
         }
 
-        var tokenStored = salteAuthService.getCachedToken(resource);
+        let tokenStored = salteAuthService.getCachedToken(resource);
         if (tokenStored) {
           salteAuthService.info('Token is available for this url ' + config.url);
           // check endpoint mapping if provided
@@ -20,7 +20,7 @@ export default function ProtectedResourceInterceptor(salteAuthService, $q, $root
         }
 
         // Cancel request if login is starting
-        var delayedRequest;
+        let delayedRequest;
         if (salteAuthService.loginInProgress()) {
           if (salteAuthService.config.popUp) {
             salteAuthService.info('Url: ' + config.url + ' will be loaded after login is successful');
@@ -58,7 +58,7 @@ export default function ProtectedResourceInterceptor(salteAuthService, $q, $root
       salteAuthService.info('Getting error in the response.');
       if (rejection) {
         if (rejection.status === 401) {
-          var resource = salteAuthService.getResourceForEndpoint(rejection.config.url);
+          let resource = salteAuthService.getResourceForEndpoint(rejection.config.url);
           salteAuthService.clearCacheForResource(resource);
           $rootScope.$broadcast('salte-auth:notAuthorized', rejection, resource);
         } else {

@@ -1,19 +1,19 @@
 import SalteAuth from 'salte-auth';
 
 export default function() {
-  var salteAuth = null;
-  var _oauthData = {
+  let salteAuth = null;
+  let _oauthData = {
     isAuthenticated: false,
     userName: '',
     loginError: '',
     profile: ''
   };
 
-  var updateDataFromCache = function(resource) {
+  let updateDataFromCache = function(resource) {
     // only cache lookup here to not interrupt with events
-    var token = salteAuth.getCachedToken(resource);
+    let token = salteAuth.getCachedToken(resource);
     _oauthData.isAuthenticated = token !== null && token.length > 0;
-    var user = salteAuth.getCachedUser() || {
+    let user = salteAuth.getCachedUser() || {
       userName: ''
     };
     _oauthData.userName = user.userName;
@@ -24,8 +24,8 @@ export default function() {
   this.init = function(configOptions, httpProvider) {
     if (configOptions) {
       // redirect and logout_redirect are set to current location by default
-      var existingHash = window.location.hash;
-      var pathDefault = window.location.href;
+      let existingHash = window.location.hash;
+      let pathDefault = window.location.href;
       if (existingHash) {
         pathDefault = pathDefault.replace(existingHash, '');
       }
@@ -49,21 +49,21 @@ export default function() {
 
   /* @ngInject */
   this.$get = function SalteAuthService($rootScope, $window, $q, $location, $timeout, $injector) {
-    var locationChangeHandler = function(event, newUrl, oldUrl) {
+    let locationChangeHandler = function(event, newUrl, oldUrl) {
       salteAuth.verbose('Location change event from ' + oldUrl + ' to ' + newUrl);
-      var hash = $window.location.hash;
-      var search = $window.location.search;
+      let hash = $window.location.hash;
+      let search = $window.location.search;
 
       if (salteAuth.isCallback(hash, search)) {
         // callback can come from login or iframe request
         salteAuth.verbose('Processing Callback, Hash: ' + hash + '; Search String: ' + search);
-        var requestInfo = salteAuth.getRequestInfo(hash, search);
+        let requestInfo = salteAuth.getRequestInfo(hash, search);
         salteAuth.saveTokenFromHash(requestInfo);
 
         // Return to callback if it is sent from iframe
         if (requestInfo.stateMatch) {
           if (requestInfo.requestType === salteAuth.REQUEST_TYPE.RENEW_TOKEN) {
-            var callback = $window.parent.AuthenticationContext.callBackMappedToRenewStates[requestInfo.stateResponse];
+            let callback = $window.parent.AuthenticationContext.callBackMappedToRenewStates[requestInfo.stateResponse];
             // since this is a token renewal request in iFrame, we don't need to proceed with the location change.
             event.preventDefault();
 
@@ -102,7 +102,7 @@ export default function() {
 
             // redirect to login start page
             if (!salteAuth.popUp) {
-              var loginStartPage = salteAuth._getItem(salteAuth.CONSTANTS.STORAGE.LOGIN_REQUEST);
+              let loginStartPage = salteAuth._getItem(salteAuth.CONSTANTS.STORAGE.LOGIN_REQUEST);
               if (typeof loginStartPage !== 'undefined' && loginStartPage && loginStartPage.length !== 0) {
                 // prevent the current location change and redirect the user back to the login start page
                 salteAuth.verbose('Redirecting to start page: ' + loginStartPage);
@@ -143,7 +143,7 @@ export default function() {
       }, 1);
     };
 
-    var loginHandler = function() {
+    let loginHandler = function() {
       salteAuth.info('Login event for:' + $location.$$url);
       if (salteAuth.config && salteAuth.config.localLoginUrl) {
         $location.path(salteAuth.config.localLoginUrl);
@@ -161,7 +161,7 @@ export default function() {
 
     function isAnonymousEndpoint(url) {
       if (salteAuth.config && salteAuth.config.anonymousEndpoints) {
-        for (var i = 0; i < salteAuth.config.anonymousEndpoints.length; i++) {
+        for (let i = 0; i < salteAuth.config.anonymousEndpoints.length; i++) {
           if (url.indexOf(salteAuth.config.anonymousEndpoints[i]) > -1) {
             return true;
           }
@@ -171,8 +171,8 @@ export default function() {
     }
 
     function getStates(toState) {
-      var state = null;
-      var states = [];
+      let state = null;
+      let states = [];
       if (toState.hasOwnProperty('parent')) {
         state = toState;
         while (state) {
@@ -180,8 +180,8 @@ export default function() {
           state = $injector.get('$state').get(state.parent);
         }
       } else {
-        var stateNames = toState.name.split('.');
-        for (var i = 0, stateName = stateNames[0]; i < stateNames.length; i++) {
+        let stateNames = toState.name.split('.');
+        for (let i = 0, stateName = stateNames[0]; i < stateNames.length; i++) {
           state = $injector.get('$state').get(stateName);
           if (state) {
             states.push(state);
@@ -192,7 +192,7 @@ export default function() {
       return states;
     }
 
-    var routeChangeHandler = function(e, nextRoute) {
+    let routeChangeHandler = function(e, nextRoute) {
       if (nextRoute && nextRoute.$$route) {
         if (isADLoginRequired(nextRoute.$$route, salteAuth.config)) {
           if (!_oauthData.isAuthenticated) {
@@ -202,7 +202,7 @@ export default function() {
             }
           }
         } else {
-          var nextRouteUrl;
+          let nextRouteUrl;
           if (typeof nextRoute.$$route.templateUrl === 'function') {
             nextRouteUrl = nextRoute.$$route.templateUrl(nextRoute.params);
           } else {
@@ -216,11 +216,11 @@ export default function() {
       }
     };
 
-    var stateChangeHandler = function(e, toState, toParams, fromState, fromParams) { // jshint ignore:line
+    let stateChangeHandler = function(e, toState, toParams, fromState, fromParams) { // jshint ignore:line
       if (toState) {
-        var states = getStates(toState);
-        var state = null;
-        for (var i = 0; i < states.length; i++) {
+        let states = getStates(toState);
+        let state = null;
+        for (let i = 0; i < states.length; i++) {
           state = states[i];
           if (isADLoginRequired(state, salteAuth.config)) {
             if (!_oauthData.isAuthenticated) {
@@ -230,7 +230,7 @@ export default function() {
               }
             }
           } else if (state.templateUrl) {
-            var nextStateUrl;
+            let nextStateUrl;
             if (typeof state.templateUrl === 'function') {
               nextStateUrl = state.templateUrl(toParams);
             } else {
@@ -244,7 +244,7 @@ export default function() {
       }
     };
 
-    var stateChangeErrorHandler = function(event, toState, toParams, fromState, fromParams, error) {
+    let stateChangeErrorHandler = function(event, toState, toParams, fromState, fromParams, error) {
       salteAuth.verbose('State change error occured. Error: ' + error);
 
       if (error && error.data) {
@@ -284,7 +284,7 @@ export default function() {
       userInfo: _oauthData,
       acquireToken: function(resource) {
         // automated token request call
-        var deferred = $q.defer();
+        let deferred = $q.defer();
         salteAuth._renewActive = true;
         salteAuth.acquireToken(resource, function(error, tokenOut) {
           salteAuth._renewActive = false;
@@ -299,7 +299,7 @@ export default function() {
         return deferred.promise;
       },
       getUser: function() {
-        var deferred = $q.defer();
+        let deferred = $q.defer();
         salteAuth.getUser(function(error, user) {
           if (error) {
             salteAuth.error('Error when getting user', error);

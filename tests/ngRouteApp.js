@@ -2,7 +2,7 @@ import ngResource from 'angular-resource';
 import ngRoute from 'angular-route';
 import salteAuthAngular from '../src/salte-auth-angular.module.js';
 
-var ngRouteApp = angular.module('NgRouteApp', [ngResource, ngRoute, salteAuthAngular]);
+let ngRouteApp = angular.module('NgRouteApp', [ngResource, ngRoute, salteAuthAngular]);
 
 ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvider) {
   $routeProvider.when('/home', {
@@ -19,7 +19,7 @@ ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvid
     redirectTo: '/home'
   });
 
-  var endpoints = {
+  let endpoints = {
     '/api/Todo/': 'resource1',
     '/anotherApi/Item/': 'resource2',
     'https://testapi.com/': 'resource1'
@@ -36,8 +36,8 @@ ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvid
 });
 
 ngRouteApp.factory('ItemFactory', ['$http', function($http) {
-  var serviceFactory = {};
-  var _getItem = function(id) {
+  let serviceFactory = {};
+  let _getItem = function(id) {
     return $http.get('/anotherApi/Item/' + id);
   };
 
@@ -46,12 +46,12 @@ ngRouteApp.factory('ItemFactory', ['$http', function($http) {
 }]);
 
 ngRouteApp.factory('TaskFactory', ['$http', function($http) {
-  var serviceFactory = {};
-  var _getItem = function(id) {
+  let serviceFactory = {};
+  let _getItem = function(id) {
     return $http.get('/api/Todo/' + id);
   };
 
-  var _getItem2 = function(url) {
+  let _getItem2 = function(url) {
     return $http.get(url);
   };
   serviceFactory.getItem = _getItem;
@@ -65,7 +65,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -74,7 +74,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.item = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -83,7 +83,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -92,7 +92,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -101,7 +101,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -110,7 +110,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loadingMsg = "";
+      $scope.loadingMsg = '';
     });
   };
 
@@ -119,7 +119,7 @@ ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'Ta
       $scope.task = data;
     }).error(function(err) {
       $scope.error = err;
-      $scope.loaingMsg = "";
+      $scope.loaingMsg = '';
     });
   };
 
