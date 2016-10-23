@@ -1,10 +1,16 @@
 extends: google
 env:
   browser: true
-  jasmine: true
-globals:
-  angular: true
+parserOptions:
+  sourceType: module
 rules:
+  comma-dangle:
+    - error
+    - arrays: never
+      objects: never
+      imports: never
+      exports: never
+      functions: never
   max-nested-callbacks: 0
   no-warning-comments: 0
   require-jsdoc: 0
@@ -16,3 +22,4 @@ rules:
   new-cap: 0
   no-trailing-spaces: 0
   no-negated-condition: 0
+  no-invalid-this: 0
