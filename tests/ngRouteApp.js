@@ -14,7 +14,7 @@ ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvid
   }).when('/todoList', {
     controller: 'todoListController',
     template: '<div>todoList</div>',
-    requireADLogin: true
+    requireAuthentication: true
   }).otherwise({
     redirectTo: '/home'
   });
