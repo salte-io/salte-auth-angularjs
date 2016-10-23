@@ -25,38 +25,38 @@ describe('angular-ui-router tests', () => {
   }));
 
   afterEach(function() {
-    $window.parent = {};
+    $window.parent.AuthenticationContext = null;
     $window.AuthenticationContext = null;
   });
 
   it('checks if anonymous endpoints are populated on statechange event if states are nested and separated by .', function() {
-    var state;
+    let state;
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       state = toState;
     });
-    var urlNavigate = 'settings/profile/name';
+    let urlNavigate = 'settings/profile/name';
     $location.url(urlNavigate);
     $rootScope.$digest();
     expect(state.name).toEqual('settings.profile.name');
-    var states = urlNavigate.split('/');
-    for (var i = 0; i < states.length; i++) {
+    let states = urlNavigate.split('/');
+    for (let i = 0; i < states.length; i++) {
       expect(salteAuthService.config.anonymousEndpoints[i]).toEqual(states[i] + '.html');
     }
   });
 
   it('checks if state is resolved when templateUrl is a function which depends on stateParams and states have parent property', function() {
-    var state;
+    let state;
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
       state = toState;
     });
-    var urlNavigate = 'settings/account/Id/testId/name/Name/testName';
+    let urlNavigate = 'settings/account/Id/testId/name/Name/testName';
     $location.url(urlNavigate);
     $rootScope.$digest();
     expect($stateParams.accountId).toEqual('testId');
     expect($stateParams.accountName).toEqual('testName');
     expect(state.name).toEqual('settings.account.name');
-    var states = state.name.split('.');
-    for (var i = 0; i < states.length; i++) {
+    let states = state.name.split('.');
+    for (let i = 0; i < states.length; i++) {
       expect(salteAuthService.config.anonymousEndpoints[i]).toEqual(states[i] + '.html');
     }
   });

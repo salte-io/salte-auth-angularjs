@@ -2,7 +2,7 @@ import uiRouter from 'angular-ui-router';
 import salteAuthAngular from '../src/salte-auth-angular.module.js';
 
 // Test app Ui-Router
-var uiRouterApp = angular.module("UIRouterApp", [uiRouter, salteAuthAngular]);
+let uiRouterApp = angular.module('UIRouterApp', [uiRouter, salteAuthAngular]);
 uiRouterApp.config(($stateProvider, $urlRouterProvider, $httpProvider, salteAuthServiceProvider) => {
   $stateProvider.state('settings', { url: '/settings',
                                      templateUrl: 'settings.html'
@@ -34,14 +34,14 @@ uiRouterApp.config(($stateProvider, $urlRouterProvider, $httpProvider, salteAuth
                                                    templateUrl: 'email.html'
                                                  });
   $urlRouterProvider.otherwise('/settings');
-  var endpoints = {};
+  let endpoints = {};
 
   salteAuthServiceProvider.init({
-    instance: 'https://identity.provider.com/',
+    url: 'https://identity.provider.com/',
     clientId: 'clientid123',
     loginResource: 'loginResource123',
     redirectUri: 'https://myapp.com/page',
-    endpoints: endpoints
+    securedEndpoints: endpoints
   },
     $httpProvider // pass http provider to inject request interceptor to attach tokens
   );
