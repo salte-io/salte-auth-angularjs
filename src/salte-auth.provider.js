@@ -156,7 +156,7 @@ export default function() {
     };
 
     function isADLoginRequired(route, global) {
-      return global.requireADLogin ? route.requireADLogin !== false : Boolean(route.requireADLogin);
+      return global.requireAuthentication ? route.requireAuthentication !== false : Boolean(route.requireAuthentication);
     }
 
     function isAnonymousEndpoint(url) {
