@@ -37,11 +37,11 @@ uiRouterApp.config(($stateProvider, $urlRouterProvider, $httpProvider, salteAuth
   let endpoints = {};
 
   salteAuthServiceProvider.init({
-    instance: 'https://identity.provider.com/',
+    url: 'https://identity.provider.com/',
     clientId: 'clientid123',
     loginResource: 'loginResource123',
     redirectUri: 'https://myapp.com/page',
-    endpoints: endpoints
+    securedEndpoints: endpoints
   },
     $httpProvider // pass http provider to inject request interceptor to attach tokens
   );
