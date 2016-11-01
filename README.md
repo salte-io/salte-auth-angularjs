@@ -8,8 +8,8 @@
 [![Commitizen friendly][commitizen-image]][commitizen-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
 
-WIP: Move along this project is still in development!
-
+## Description
+This library allows you to easily incorporate OpenID Connect implicit flow authentication into your single page application.  It can also retrieve the access token(s) required to make secured REST API calls and will enrich outgoing requests to these APIs with the an authorization header containing the applicable access token.  It will also monitor the expiration time associated with each token and refresh them as needed.     
 ## Install
 
 You can install this package either with `npm` or with `bower`.
@@ -34,7 +34,48 @@ Then add a `<script>` to your index.html:
 ```html
 <script src="/bower_components/salte-auth-angular/salte-auth-angular.js"></script>
 ```
+## Typical Usage Scenario
+The following is a sample JavaScript file used to bootstrap an AngularJS 1.x application that uses ngRoute (uiRouter is also supported):
+```javascript
+'use strict';
 
+var module = angular.module('Sample', ['ngRoute', 'salte.auth-angular', 'ngResource', 'ui.bootstrap']);
+
+module.config(['$routeProvider', '$httpProvider', 'salteAuthServiceProvider', function($routeProvider, $httpProvider, salteAuthServiceProvider) {
+  $routeProvider.when("/Welcome", {
+    controller: "WelcomeController",
+    templateUrl: "templates/welcome.html"
+  }).when("/SomeSecuredPage", {
+    controller: "GithubUsers",
+    controllerAs: 'vm',
+    templateUrl: "templates/githubUsers.html",
+    requireAuthentication: true
+  }).otherwise({ redirectTo: "/Home" });
+
+  salteAuthServiceProvider.init({
+      responseType: 'id_token',
+      scope: 'openid',
+      clientId: 'XE9mdXnr0j2z6_nED5ifDIW4S9oa',
+      url: 'https://login.microsoftonline.com/common/oauth2/',
+      redirectUri: 'https://<my registered application url>/',
+      securedEndpoints: {"/api" : "mySecuredAPI"},
+      anonymousEndpoints: ['templates']
+    },
+    $httpProvider
+  );
+}]);
+```
+The following table describes each of the initialization parameters listed above:
+
+Parameter Name|Required|Default|Description
+--------------|--------|-------|-----------
+responseType  |No|id_token | The value of this field is not validated by the library.  However, according to the [OpenID Connect specification](http://openid.net/specs/openid-connect-core-1_0.html), this parameter should be passed as either "id_token" or "id_token token".  Ultimately, the responseType passed must result in a valid id_token being returned from the identity provider for the user to be successfully authenticated.
+scope|No|Not Passed|According to the [OpenID Connect specification](http://openid.net/specs/openid-connect-core-1_0.html), this parameter must contain, at minimum, the value "openid".  Additionally, if supported by your identity provider, you may specify profile, email, address, and phone to request that specific sets of information be returned as claim values in the id_token.  Additional identity provider-specific scopes may also be supported to identity what access privileges are being requested.  As with responseType, the value of this parameter is not validated by the library.
+url|Yes|None|This is the base url for the identity provider's authorize endpoint; not including the word authorize.  It must be a valid https endpoint that ends in a forward slash.
+redirectUri|No|Current Window Location|Redirection URI to which the response will be sent. This URI MUST match the redirection URI pre-registered with the identity provider.
+securedEndpoints|No|None|This is a JSON object containing one or more named endpoints formatted as { "Endpoint": "ResourceId" }.  Endpoint may contain a partial URL to be matched against outgoing REST API calls.  All calls matching a given "Endpoint"  will share the same access token.  "ResourceId" is just an arbitrary name used to group matching endpoints.
+anonymousEndpoints|No|None|This is an array containing one or more partial URLs to be matched against outgoing REST API calls.  Calls matching one of these partial URLs  are considered anonymous and will not have a token attached.  A typical use of this parameter is to identify the path to partial HTML files used in single page applications.
+In addition, the "requireAuthentication: true" parameter/value, currently tied to the "/SomeSecuredPage" route, can be moved to the salteAuthServiceProvider "init" function (like those listed in the table above) to require authentication for all routes.
 ## License
 
 The MIT License
