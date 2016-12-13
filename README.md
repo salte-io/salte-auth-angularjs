@@ -76,11 +76,12 @@ redirectUri|No|Current Window Location|Redirection URI to which the response wil
 securedEndpoints|No|None|This is a JSON object containing one or more named endpoints formatted as { "Endpoint": "ResourceId" }.  Endpoint may contain a partial URL to be matched against outgoing REST API calls.  All calls matching a given "Endpoint"  will share the same access token.  "ResourceId" is just an arbitrary name used to group matching endpoints.
 anonymousEndpoints|No|None|This is an array containing one or more partial URLs to be matched against outgoing REST API calls.  Calls matching one of these partial URLs  are considered anonymous and will not have a token attached.  A typical use of this parameter is to identify the path to partial HTML files used in single page applications.
 In addition, the "requireAuthentication: true" parameter/value, currently tied to the "/SomeSecuredPage" route, can be moved to the salteAuthServiceProvider "init" function (like those listed in the table above) to require authentication for all routes.
+
 ## License
 
 The MIT License
 
-Copyright (c) 2012-2016 Salte. https://salte.io
+Copyright (c) 2016 Salte. https://www.salte.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
