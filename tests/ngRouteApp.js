@@ -61,63 +61,63 @@ ngRouteApp.factory('TaskFactory', ['$http', function($http) {
 
 ngRouteApp.controller('TaskCtl', ['$scope', '$location', 'salteAuthService', 'TaskFactory', 'ItemFactory', function($scope, $location, salteAuthService, TaskFactory, ItemFactory) {
   $scope.taskCall = function() {
-    TaskFactory.getItem(5).success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem(5).then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.itemCall = function() {
-    ItemFactory.getItem(13).success(function(data) {
-      $scope.item = data;
-    }).error(function(err) {
+    ItemFactory.getItem(13).then(function(response) {
+      $scope.item = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.taskCall2 = function() {
-    TaskFactory.getItem2('https://test.com/').success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem2('https://test.com/').then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.taskCall3 = function() {
-    TaskFactory.getItem2('https://testapi.com/').success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem2('https://testapi.com/').then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.taskCall4 = function() {
-    TaskFactory.getItem2('/someapi/item').success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem2('/someapi/item').then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.taskCall5 = function() {
-    TaskFactory.getItem2('https://myapp.com/someapi/item').success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem2('https://myapp.com/someapi/item').then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loadingMsg = '';
     });
   };
 
   $scope.taskCall6 = function() {
-    TaskFactory.getItem2('http://testwebapi.com/').success(function(data) {
-      $scope.task = data;
-    }).error(function(err) {
+    TaskFactory.getItem2('http://testwebapi.com/').then(function(response) {
+      $scope.task = response.data;
+    }, function(err) {
       $scope.error = err;
       $scope.loaingMsg = '';
     });
