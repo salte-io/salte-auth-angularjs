@@ -1,11 +1,13 @@
 var path = require('path');
 
+const isProd = (process.env.NODE_ENV === 'production');
+
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: './salte-auth-angular.module.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'salte-auth-angular.js',
+    filename: isProd ? 'salte-auth-angular.min.js' : 'salte-auth-angular.js',
     sourceMapFilename: '[file].map',
     library: 'salte-auth-angular',
     libraryTarget: 'umd',
