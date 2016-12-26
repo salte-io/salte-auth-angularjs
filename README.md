@@ -59,7 +59,10 @@ module.config(['$routeProvider', '$httpProvider', 'salteAuthServiceProvider', fu
       url: 'https://login.microsoftonline.com/common/oauth2/',
       redirectUri: 'https://<my registered application url>/',
       securedEndpoints: {"/api" : "mySecuredAPI"},
-      anonymousEndpoints: ['templates']
+      anonymousEndpoints: ['templates'],
+      cacheLocation: 'localStorage',
+      hashPrefix: '!',
+      tokenCallbackTimeout: '12000'
     },
     $httpProvider
   );
@@ -75,6 +78,9 @@ url|Yes|None|This is the base url for the identity provider's authorize endpoint
 redirectUri|No|Current Window Location|Redirection URI to which the response will be sent. This URI MUST match the redirection URI pre-registered with the identity provider.
 securedEndpoints|No|None|This is a JSON object containing one or more named endpoints formatted as { "Endpoint": "ResourceId" }.  Endpoint may contain a partial URL to be matched against outgoing REST API calls.  All calls matching a given "Endpoint"  will share the same access token.  "ResourceId" is just an arbitrary name used to group matching endpoints.
 anonymousEndpoints|No|None|This is an array containing one or more partial URLs to be matched against outgoing REST API calls.  Calls matching one of these partial URLs  are considered anonymous and will not have a token attached.  A typical use of this parameter is to identify the path to partial HTML files used in single page applications.
+cacheLocation|No|sessionStorage|Specifies where this component should store state information including, but not limited to, the application's id_token and access_token(s).
+hashPrefix|No|Empty String|As of AngularJS 1.6.0, the hashPrefix default value was changed from empty string to an exclamation point (!).  As a result, AngularJS 1.6.0+ applications that are not running in HTML5 mode, or that will run in browsers that do not support HTML5 mode, must indicate what value they are using for the $locationProvider's hashPrefix value; whether that be the new default value or something else.
+tokenCallbackTimeout|No|6000|This is the amount of time, in milliseconds, that the component will wait for renew token requests sent to the identity provider.
 In addition, the "requireAuthentication: true" parameter/value, currently tied to the "/SomeSecuredPage" route, can be moved to the salteAuthServiceProvider "init" function (like those listed in the table above) to require authentication for all routes.
 
 ## License
