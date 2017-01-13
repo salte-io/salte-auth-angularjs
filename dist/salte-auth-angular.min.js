@@ -1,5 +1,5 @@
 /**
- * salte-auth-angular JavaScript Library v1.0.11
+ * salte-auth-angular JavaScript Library v1.0.12
  *
  * @license MIT (https://github.com/salte-io/salte-auth/blob/master/LICENSE)
  *
