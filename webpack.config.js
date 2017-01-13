@@ -1,43 +1,57 @@
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
+const deindent = require('deindent');
+const packageJson = require('./package.json');
+const args = require('yargs').argv;
 
-const isProd = (process.env.NODE_ENV === 'production');
+const isProd = args.p;
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: './salte-auth-angular.module.js',
+  entry: {
+    'salte-auth-angular': './salte-auth-angular.module.js'
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: isProd ? 'salte-auth-angular.min.js' : 'salte-auth-angular.js',
+    filename: isProd ? '[name].min.js' : '[name].js',
     sourceMapFilename: '[file].map',
     library: 'salte-auth-angular',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
   externals: [{
-    'angular': {
-      root: 'angular',
-      commonjs2: 'angular',
-      commonjs: 'angular',
-      amd: 'angular'
-    },
-    'salte-auth': {
-      root: 'salte-auth',
-      commonjs2: 'salte-auth',
-      commonjs: 'salte-auth',
-      amd: 'salte-auth'
-    }
+    'angular': 'angular',
+    'salte-auth': 'salte-auth'
   }],
   devtool: 'source-map',
   module: {
-    preLoaders: [{
+    rules: [{
+      enforce: 'pre',
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'eslint'
-    }],
-    loaders: [{
+      loader: 'eslint-loader'
+    }, {
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'ng-annotate?map=false!babel'
+      loader: 'babel-loader'
+    }, {
+      test: /\.html$/,
+      exclude: /node_modules/,
+      loader: 'html-loader'
     }]
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: deindent(`
+        /**
+         * ${packageJson.name} JavaScript Library v${packageJson.version}
+         *
+         * @license MIT (https://github.com/salte-io/salte-auth/blob/master/LICENSE)
+         *
+         * Made with ♥ by ${packageJson.contributors.join(', ')}
+         */
+      `).trim(),
+      raw: true
+    })
+  ]
 };
