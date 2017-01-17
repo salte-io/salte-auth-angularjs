@@ -2,9 +2,13 @@ import ngResource from 'angular-resource';
 import ngRoute from 'angular-route';
 import salteAuthAngular from '../src/salte-auth-angular.module.js';
 
-let ngRouteApp = angular.module('NgRouteApp', [ngResource, ngRoute, salteAuthAngular]);
+let ngRouteApp = angular.module('NgRouteApp', [
+  ngResource,
+  ngRoute,
+  salteAuthAngular
+]);
 
-ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvider) {
+ngRouteApp.config(['$httpProvider', '$routeProvider', 'salteAuthServiceProvider', ($httpProvider, $routeProvider, salteAuthServiceProvider) => {
   $routeProvider.when('/home', {
     controller: 'homeController',
     template: '<div>home</div>'
@@ -33,7 +37,7 @@ ngRouteApp.config(function($httpProvider, $routeProvider, salteAuthServiceProvid
     securedEndpoints: endpoints },
     $httpProvider
   );
-});
+}]);
 
 ngRouteApp.factory('ItemFactory', ['$http', function($http) {
   let serviceFactory = {};

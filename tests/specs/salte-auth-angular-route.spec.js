@@ -5,6 +5,8 @@ describe('angular ngRoute tests', function() {
 
   beforeEach(angular.mock.module(ngRouteApp));
 
+  beforeEach(angular.mock.inject.strictDi(true));
+
   beforeEach(angular.mock.inject(function(_salteAuthService_, _$rootScope_, _$controller_, _$httpBackend_, _$q_, _$window_, _$route_, _$location_) {
     salteAuthService = _salteAuthService_;
     $rootScope = _$rootScope_;
@@ -384,12 +386,13 @@ describe('angular ngRoute tests', function() {
   });
 
   it('checks if Logging is defined', function() {
+    let logMessage;
     Logging.level = 2;
     Logging.log = function(message) {
-      $window.logMessage = message;
+      logMessage = message;
     };
     salteAuthService.info('test message');
-    expect($window.logMessage).toContain('test message');
+    expect(logMessage).toContain('test message');
     expect(Logging.level).toEqual(2);
   });
 });
