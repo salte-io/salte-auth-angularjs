@@ -329,4 +329,5 @@ export default function() {
       salteAuth: salteAuth
     };
   };
+  this.$get.$inject = ['$rootScope', '$window', '$q', '$location', '$timeout', '$injector'];
 }
