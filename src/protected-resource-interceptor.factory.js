@@ -69,3 +69,5 @@ export default function ProtectedResourceInterceptor(salteAuthService, $q, $root
     }
   };
 }
+
+ProtectedResourceInterceptor.$inject = ['salteAuthService', '$q', '$rootScope'];
