@@ -13,7 +13,7 @@
     "salte-auth-angular"
   ],
   "engines": {
-    "node": ">= 5.4.1 < 6"
+    "node": ">= 5.4.1 < 7"
   },
   "repository": {
     "type": "git",
