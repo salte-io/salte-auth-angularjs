@@ -33,7 +33,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "salte-auth": "1.0.16"
+    "salte-auth": "1.0.18"
   },
   "peerDependencies": {
     "angular": "^1.5.8"
