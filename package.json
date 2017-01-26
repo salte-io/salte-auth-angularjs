@@ -12,9 +12,6 @@
   "keywords": [
     "salte-auth-angular"
   ],
-  "engines": {
-    "node": ">= 5.4.1 < 6"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/salte-io/salte-auth-angular.git"
