@@ -46,8 +46,8 @@
     "coveralls": "2.13.1",
     "cz-conventional-changelog": "^2.0.0",
     "deindent": "^0.1.0",
-    "eslint": "^3.8.1",
-    "eslint-config-google": "^0.7.0",
+    "eslint": "^4.1.0",
+    "eslint-config-google": "^0.8.0",
     "eslint-loader": "^1.6.0",
     "eslint-plugin-jasmine": "^2.0.0",
     "isparta-loader": "^2.0.0",
@@ -64,8 +64,8 @@
     "karma-webpack": "^2.0.1",
     "publish-latest": "1.1.2",
     "semantic-release": "^6.3.6",
-    "webpack": "^2.2.0",
-    "yargs": "^7.0.1"
+    "webpack": "^3.0.0",
+    "yargs": "^8.0.1"
   },
   "config": {
     "commitizen": {
