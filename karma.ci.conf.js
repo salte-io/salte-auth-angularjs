@@ -24,6 +24,11 @@ module.exports = function(config) {
       browserName: 'internet explorer',
       version: '10'
     },
+    Safari10: {
+      base: 'SauceLabs',
+      browserName: 'safari',
+      version: '10'
+    },
     Safari9: {
       base: 'SauceLabs',
       browserName: 'safari',
@@ -41,7 +46,7 @@ module.exports = function(config) {
     }
   };
 
-  config.set({
+  const karmaConfig = {
     basePath: '',
 
     frameworks: [
@@ -62,7 +67,7 @@ module.exports = function(config) {
       noInfo: true
     },
 
-    reporters: ['spec', 'saucelabs'],
+    reporters: ['mocha'],
 
     port: 9876,
 
@@ -73,15 +78,24 @@ module.exports = function(config) {
     sauceLabs: {
       testName: 'salte-io/salte-auth-angular',
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      startConnect: false
+      startConnect: true
     },
-
-    customLaunchers: customLaunchers,
-    browsers: Object.keys(customLaunchers),
 
     captureTimeout: 0,
     browserNoActivityTimeout: 120000,
 
     singleRun: true
-  });
+  };
+
+  // https://github.com/travis-ci/travis-ci/issues/1946
+  // TODO: Switch to SauceLabs purely once Encrypted Variables in PRs are supported
+  if (process.env.TRAVIS_PULL_REQUEST === 'false') {
+    karmaConfig.customLaunchers = customLaunchers;
+    karmaConfig.browsers = Object.keys(customLaunchers);
+    karmaConfig.reporters.push('saucelabs');
+  } else {
+    karmaConfig.browsers = ['Chrome', 'Firefox'];
+  }
+
+  config.set(karmaConfig);
 };

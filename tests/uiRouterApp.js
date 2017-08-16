@@ -24,15 +24,13 @@ uiRouterApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'sa
     parent: 'settings',
     url: '/account/Id/:accountId',
     templateUrl: function(stateParams) {
-      if (stateParams.accountId === 'testId')
-        return 'account.html';
+      if (stateParams.accountId === 'testId') return 'account.html';
     }
   }).state('settings.account.name', {
     parent: 'settings.account',
     url: '/name/Name/:accountName',
     templateUrl: function(stateParams) {
-      if (stateParams.accountName === 'testName')
-        return 'name.html';
+      if (stateParams.accountName === 'testName') return 'name.html';
     }
   }).state('settings.account.email', {
     url: '/email',
