@@ -67,7 +67,7 @@
     "publish-latest": "1.1.2",
     "semantic-release": "^8.0.0",
     "webpack": "^3.0.0",
-    "yargs": "^8.0.1"
+    "yargs": "^9.0.1"
   },
   "config": {
     "commitizen": {
