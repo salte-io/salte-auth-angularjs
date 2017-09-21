@@ -10,26 +10,21 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
-addons:
-  firefox: latest
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 before_install:
   - yarn global add greenkeeper-lockfile@1
 before_script:
   - greenkeeper-lockfile-update
 script:
   - yarn run lint
-  - xvfb-run yarn run test:sauce
-  - 'if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then yarn run test:sauce; fi'
+  - yarn run test:sauce
   - yarn run test
 after_script:
-  - greenkeeper-lockfile-upload
+- greenkeeper-lockfile-upload
 after_success:
-  - yarn run report-coverage
-  - yarn run semantic-release
+    - yarn run report-coverage
+    - yarn run semantic-release
 notifications:
   email: change
+addons:
+  jwt:
+    secure: u0bNsa0AoRtjHjoWgM4EqftEzQKWCONgGEq5nhhM42KUzcvUnjhDN8tgQ0kg1b3r7dMw+d2AULT9BkelpIZfgzs5/Jsf0YLWnTBSxJf8NLg7ApTtcnw3XRDVmECJgiNUIMH1I2ZUWPZctPb4eEUt1epFJZfpNBLH/zBnP39A7EWAjmCeMyUc4nuD7wnjQdtWs38WMDw/h/qPcnTRGGvLcKRe1WvngTNfG+ZwFNS04R0aZP/wyKuCdfQWM/7w16pJiY6JNJhzIaPFT/KiSps+vaTAY/REjznBu1o6CUHN/WlQWqbcKkxkysptuq0uIyjoR3rQ6imi2vNSY0tsaOoddVKrw71+yGq+9w5PQCi8LcsmPAk5hvOP83AhBYQ+Gxp3jEnwUz9sf9NOiLCsZyjAMaOYK7/d64XVjs9W//9FrJ7JVbDQoprL7lPFvergtko7EbRHOwHb1p6tp3NGswStF04FZ1YaUMRF348nzhs2sWKflVOsNr1IxRltRx/v23o/68jieCwNVP2u/kxqoXptYl9F6BmR1rY5GEfb0eQGAEIIH0ZdUujf2sSf+VNAe3SVhCcHyWF+Rc4rURYuHn33Pn41mLNXgUjECi1aUF9MHj5HW3hAhPS3eRxCLhANtaG0uuehYA9z7d5LxNL3So2ngjyG9TY/yYK20LO3OsEmMLs=
