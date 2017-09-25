@@ -11,7 +11,8 @@ module.exports = function(config) {
     basePath: '',
 
     frameworks: [
-      'jasmine'
+      'mocha',
+      'sinon'
     ],
 
     files: [
