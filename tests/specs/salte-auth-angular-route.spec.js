@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import ngRouteApp from '../ngRouteApp.js';
+import ngRouteApp from '../app.ng-route.js';
 
-describe('angular ngRoute tests', () => {
+describe('NG Router', () => {
   let $scope, $httpBackend, salteAuthService, $rootScope, $controller, $q, $window, $route, $location;
 
   beforeEach(angular.mock.module(ngRouteApp));

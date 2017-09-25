@@ -254,13 +254,48 @@ export default function() {
     };
 
     // Route change event tracking to receive fragment and also auto renew tokens
-    $rootScope.$on('$routeChangeStart', routeChangeHandler);
+    if ($injector.has('$transitions')) {
+      const $transitions = $injector.get('$transitions');
+      $transitions.onStart({}, (transition) => {
+        const route = transition.to();
+        if (route) {
+          if (isADLoginRequired(route, salteAuth.config)) {
+            if (!_oauthData.isAuthenticated) {
+              if (!salteAuth._renewActive && !salteAuth.loginInProgress()) {
+                salteAuth.info('Route change event for:' + $location.$$url);
+                loginHandler();
+              }
+            }
+          } else {
+            let nextRouteUrl;
+            if (typeof route.templateUrl === 'function') {
+              nextRouteUrl = route.templateUrl(transition.params());
+            } else {
+              nextRouteUrl = route.templateUrl;
+            }
 
-    $rootScope.$on('$stateChangeStart', stateChangeHandler);
+            if (nextRouteUrl && !isAnonymousEndpoint(nextRouteUrl)) {
+              salteAuth.config.anonymousEndpoints.push(nextRouteUrl);
+            }
+          }
+        }
+        return true;
+      });
+      $transitions.onError({}, (transition) => {
+        const error = transition.error();
+        salteAuth.verbose('State change error occured. Error: ' + error);
 
+        if (error && error.data) {
+          salteAuth.info('Setting defaultPrevented to true if state change error occured because the request was rejected. Error: ' + error.data);
+        }
+      });
+    } else {
+      $rootScope.$on('$stateChangeStart', stateChangeHandler);
+      $rootScope.$on('$stateChangeError', stateChangeErrorHandler);
+
+      $rootScope.$on('$routeChangeStart', routeChangeHandler);
+    }
     $rootScope.$on('$locationChangeStart', locationChangeHandler);
-
-    $rootScope.$on('$stateChangeError', stateChangeErrorHandler);
 
     updateDataFromCache(salteAuth.config.loginResource);
     $rootScope.userInfo = _oauthData;
