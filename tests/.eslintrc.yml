@@ -1,8 +1,6 @@
 extends: ../.eslintrc.yml
 plugins:
-  - jasmine
-env:
-  jasmine: true
+  - mocha
 globals:
   assert: true
   expect: true
@@ -10,7 +8,3 @@ globals:
   Logging: true
 rules:
   no-unused-expressions: 0
-  jasmine/no-suite-callback-args: 2
-  jasmine/no-suite-dupes:
-    - 2
-    - branch
