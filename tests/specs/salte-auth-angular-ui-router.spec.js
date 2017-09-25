@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import uiRouterApp from '../uiRouterApp.js';
 
 describe('angular-ui-router tests', () => {
@@ -22,42 +23,41 @@ describe('angular-ui-router tests', () => {
     $templateCache.put('account.html', '');
     $templateCache.put('name.html', '');
     salteAuthService.config.anonymousEndpoints = [];
+    window.onbeforeunload = sinon.spy();
   }));
 
-  afterEach(function() {
+  afterEach(() => {
     $window.parent.AuthenticationContext = null;
     $window.AuthenticationContext = null;
+    window.onbeforeunload = null;
   });
 
-  it('checks if anonymous endpoints are populated on statechange event if states are nested and separated by .', function() {
-    let state;
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      state = toState;
+  it('checks if anonymous endpoints are populated on statechange event if states are nested and separated by .', (done) => {
+    $rootScope.$on('$stateChangeSuccess', (event, toState) => {
+      expect(toState.name).to.equal('settings.profile.name');
+      let states = urlNavigate.split('/');
+      for (let i = 0; i < states.length; i++) {
+        expect(salteAuthService.config.anonymousEndpoints[i]).to.equal(states[i] + '.html');
+      }
+      done();
     });
     let urlNavigate = 'settings/profile/name';
     $location.url(urlNavigate);
     $rootScope.$digest();
-    expect(state.name).toEqual('settings.profile.name');
-    let states = urlNavigate.split('/');
-    for (let i = 0; i < states.length; i++) {
-      expect(salteAuthService.config.anonymousEndpoints[i]).toEqual(states[i] + '.html');
-    }
   });
 
-  it('checks if state is resolved when templateUrl is a function which depends on stateParams and states have parent property', function() {
-    let state;
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
-      state = toState;
+  it('checks if state is resolved when templateUrl is a function which depends on stateParams and states have parent property', (done) => {
+    $rootScope.$on('$stateChangeSuccess', (event, toState) => {
+      expect(toState.name).to.equal('settings.account.name');
+      let states = toState.name.split('.');
+      for (let i = 0; i < states.length; i++) {
+        expect(salteAuthService.config.anonymousEndpoints[i]).to.equal(states[i] + '.html');
+      }
+      done();
     });
-    let urlNavigate = 'settings/account/Id/testId/name/Name/testName';
-    $location.url(urlNavigate);
+    $location.url('settings/account/Id/testId/name/Name/testName');
     $rootScope.$digest();
-    expect($stateParams.accountId).toEqual('testId');
-    expect($stateParams.accountName).toEqual('testName');
-    expect(state.name).toEqual('settings.account.name');
-    let states = state.name.split('.');
-    for (let i = 0; i < states.length; i++) {
-      expect(salteAuthService.config.anonymousEndpoints[i]).toEqual(states[i] + '.html');
-    }
+    expect($stateParams.accountId).to.equal('testId');
+    expect($stateParams.accountName).to.equal('testName');
   });
 });
