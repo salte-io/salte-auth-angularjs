@@ -19,10 +19,10 @@ script:
   - yarn run test:sauce
   - yarn run test
 after_script:
-- greenkeeper-lockfile-upload
+  - greenkeeper-lockfile-upload
 after_success:
-    - yarn run report-coverage
-    - yarn run semantic-release
+  - yarn run report-coverage
+  - yarn run semantic-release
 notifications:
   email: change
 addons:
