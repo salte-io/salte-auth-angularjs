@@ -3,7 +3,10 @@ webpackConfig.module.rules.push({
   enforce: 'pre',
   test: /\.js$/,
   exclude: /tests|node_modules/,
-  loader: 'isparta-loader'
+  use: {
+    loader: 'istanbul-instrumenter-loader',
+    options: { esModules: true }
+  }
 });
 
 module.exports = function(config) {
@@ -11,7 +14,8 @@ module.exports = function(config) {
     basePath: '',
 
     frameworks: [
-      'jasmine'
+      'mocha',
+      'sinon'
     ],
 
     files: [
@@ -38,6 +42,10 @@ module.exports = function(config) {
       ]
     },
 
+    mochaReporter: {
+      showDiff: true
+    },
+
     port: 9876,
 
     colors: true,
@@ -46,7 +54,7 @@ module.exports = function(config) {
 
     autoWatch: true,
 
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
 
     browserNoActivityTimeout: 120000,
 

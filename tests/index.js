@@ -1,3 +1,8 @@
+// Polyfills
+import Promise from 'promise-polyfill';
+
+window.Promise = Promise;
+
 import 'angular';
 import 'angular-mocks';
 
