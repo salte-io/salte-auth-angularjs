@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Salte Auth Angular Demo</title>
+  <base href="/">
+  <script src="/salte-auth-angularjs.js" async></script>
+  <style>
+    .debug {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      border-top: 1px solid lightgray;
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body ng-app="app" ng-controller="AppController as $ctrl">
+  <a href="/">Home</a>
+  <a href="/account">Account</a>
+  <a href="/admin">Admin</a>
+  <ui-view></ui-view>
+  <ng-view></ng-view>
+
+  <div class="debug">
+    <select name="route-provider" ng-model="$ctrl.routeProvider" ng-change="$ctrl.onChange()">
+      <option value="ng-route">NG Route</option>
+      <option value="ui-router-pre-1.x">UI Router Pre 1.x</option>
+      <option value="ui-router">UI Router</option>
+    </select>
+    <h2>User Info</h2>
+    <pre ng-bind="$ctrl.SalteAuthService.profile.userInfo | json"></pre>
+    <h2>Routes</h2>
+    <pre ng-bind="$ctrl.SalteAuthService.$auth.$config.routes | json"></pre>
+  </div>
+</body>
+
+</html>

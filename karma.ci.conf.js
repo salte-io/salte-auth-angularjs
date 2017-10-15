@@ -2,6 +2,11 @@ const webpackConfig = require('./webpack.test.config.js');
 
 module.exports = function(config) {
   const customLaunchers = {
+    ChromeBeta: {
+      base: 'SauceLabs',
+      browserName: 'chrome',
+      version: 'beta'
+    },
     Chrome: {
       base: 'SauceLabs',
       browserName: 'chrome'
@@ -24,6 +29,11 @@ module.exports = function(config) {
       browserName: 'internet explorer',
       version: '10'
     },
+    Safari10: {
+      base: 'SauceLabs',
+      browserName: 'safari',
+      version: '10'
+    },
     Safari9: {
       base: 'SauceLabs',
       browserName: 'safari',
@@ -41,11 +51,12 @@ module.exports = function(config) {
     }
   };
 
-  config.set({
+  const karmaConfig = {
     basePath: '',
 
     frameworks: [
-      'jasmine'
+      'mocha',
+      'sinon'
     ],
 
     files: [
@@ -62,7 +73,11 @@ module.exports = function(config) {
       noInfo: true
     },
 
-    reporters: ['spec', 'saucelabs'],
+    reporters: ['mocha', 'saucelabs'],
+
+    mochaReporter: {
+      showDiff: true
+    },
 
     port: 9876,
 
@@ -71,17 +86,18 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     sauceLabs: {
-      testName: 'salte-io/salte-auth-angular',
+      testName: 'salte-io/salte-auth-angularjs',
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      startConnect: false
+      startConnect: true
     },
 
     customLaunchers: customLaunchers,
     browsers: Object.keys(customLaunchers),
-
     captureTimeout: 0,
     browserNoActivityTimeout: 120000,
 
     singleRun: true
-  });
+  };
+
+  config.set(karmaConfig);
 };
