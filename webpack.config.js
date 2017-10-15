@@ -9,28 +9,28 @@ const isProd = args.p;
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
-    'salte-auth-angular': './salte-auth-angular.module.js'
+    'salte-auth-angularjs': ['./salte-auth.module.js']
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: isProd ? '[name].min.js' : '[name].js',
     sourceMapFilename: '[file].map',
-    library: 'salte-auth-angular',
+    library: 'salte-auth-angularjs',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
   externals: [{
     'angular': 'angular',
-    'salte-auth': 'salte-auth'
+    'salte-auth': {
+      root: 'salte.auth',
+      commonjs: 'salte-auth',
+      commonjs2: 'salte-auth',
+      amd: 'salte-auth'
+    }
   }],
   devtool: 'source-map',
   module: {
     rules: [{
-      enforce: 'pre',
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }, {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'

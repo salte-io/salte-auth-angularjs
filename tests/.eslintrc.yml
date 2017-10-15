@@ -1,10 +1,12 @@
 extends: ../.eslintrc.yml
 plugins:
   - mocha
+env:
+  mocha: true
 globals:
   assert: true
   expect: true
-  window: true
-  Logging: true
+  sinon: true
 rules:
   no-unused-expressions: 0
+  no-invalid-this: 0

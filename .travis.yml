@@ -1,6 +1,5 @@
 language: node_js
 node_js: stable
-dist: trusty
 sudo: false
 cache:
   yarn: true
@@ -12,19 +11,19 @@ branches:
     - /^greenkeeper/.*$/
 before_install:
   - yarn global add greenkeeper-lockfile@1
-before_script:
-  - greenkeeper-lockfile-update
+before_script: greenkeeper-lockfile-update
 script:
   - yarn run lint
   - yarn run test:sauce
   - yarn run test
-after_script:
-- greenkeeper-lockfile-upload
+after_script: greenkeeper-lockfile-upload
 after_success:
-    - yarn run report-coverage
-    - yarn run semantic-release
+  - yarn run report-coverage
+  - yarn run semantic-release
 notifications:
   email: change
+env:
+  - SAUCE_USERNAME=salte-io
 addons:
   jwt:
-    secure: u0bNsa0AoRtjHjoWgM4EqftEzQKWCONgGEq5nhhM42KUzcvUnjhDN8tgQ0kg1b3r7dMw+d2AULT9BkelpIZfgzs5/Jsf0YLWnTBSxJf8NLg7ApTtcnw3XRDVmECJgiNUIMH1I2ZUWPZctPb4eEUt1epFJZfpNBLH/zBnP39A7EWAjmCeMyUc4nuD7wnjQdtWs38WMDw/h/qPcnTRGGvLcKRe1WvngTNfG+ZwFNS04R0aZP/wyKuCdfQWM/7w16pJiY6JNJhzIaPFT/KiSps+vaTAY/REjznBu1o6CUHN/WlQWqbcKkxkysptuq0uIyjoR3rQ6imi2vNSY0tsaOoddVKrw71+yGq+9w5PQCi8LcsmPAk5hvOP83AhBYQ+Gxp3jEnwUz9sf9NOiLCsZyjAMaOYK7/d64XVjs9W//9FrJ7JVbDQoprL7lPFvergtko7EbRHOwHb1p6tp3NGswStF04FZ1YaUMRF348nzhs2sWKflVOsNr1IxRltRx/v23o/68jieCwNVP2u/kxqoXptYl9F6BmR1rY5GEfb0eQGAEIIH0ZdUujf2sSf+VNAe3SVhCcHyWF+Rc4rURYuHn33Pn41mLNXgUjECi1aUF9MHj5HW3hAhPS3eRxCLhANtaG0uuehYA9z7d5LxNL3So2ngjyG9TY/yYK20LO3OsEmMLs=
+    secure: PUG+5W5/37H/mFlsVQgVwF9U1ppEM1dR9P7enr19n6gLhtk8m26PtU8ndUXw/HLllnggfEG9/vzS15v0qI9kWFQFio/Te2X1qsBZQONtmAaJhQOJf1JF50IcrS0sqJH0sMOFN+t7+gRkVldu8HUwx/dU8SNLxZ+fJbwqRNv24yAw758VeeHdw7/bhLZgX6hgkBy8Fj3yKzbFMi5ckM8IuMgTPkcIE+vs358Y9+t2uOXXOw/7PEdU32+sLkt5gmfkbh9F/8UFxx82tfdPNPQQxjdOvi9RM9+M08kTqwMcyaaV+GZVM580oQE6nrjGMlQEwXvK4zKJHtSG/6mziUUS+XOv8PpvWvxIp340i/LUx6oHdNQ9qn7qOvluRgBToZuJ+a8iBMahn4X3+sNammCriG2pRZlu8RopS5+sW4SrkadkzZpgTOb6VvrU1dxgQGBvV1QU8FAQ4ejp6CMBAw4WlzYk9qAD7YKbxITUGDU5d5u3Wjd7atHNByS6EAAQsROUpHQX6QQo2OdiGyFr5Ze8bWfSJiDMqqi4ncV2Zrj++6wHh516+35E5oWEZL2xZ0p3Z696svAyEWUu0znBWgDr4j9yhXq50fUL8sbAwol1pu6Q/aC51R22PUieNVy/DRI5UjBhnVbc+n97KJi6oUl7eNK10qQ+s+qh/eekePBToC4=
