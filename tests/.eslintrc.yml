@@ -10,3 +10,6 @@ globals:
 rules:
   no-unused-expressions: 0
   no-invalid-this: 0
+settings:
+  polyfills:
+    - promises
