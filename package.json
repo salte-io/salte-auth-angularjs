@@ -75,7 +75,7 @@
     "uuid": "^3.0.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.0.0",
-    "yargs": "^9.0.0"
+    "yargs": "^10.0.3"
   },
   "config": {
     "commitizen": {
