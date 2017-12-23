@@ -69,7 +69,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.0",
     "mocha": "^4.0.0",
-    "promise-polyfill": "^6.0.2",
+    "promise-polyfill": "^7.0.0",
     "semantic-release": "^8.0.0",
     "sinon": "^4.0.0",
     "uuid": "^3.0.0",
