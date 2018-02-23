@@ -10,13 +10,10 @@ branches:
     - /^greenkeeper/.*$/
 script:
   - npm start lint
-  - npm start test.sauce
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then yarn start test.sauce; fi
   - npm start test
 after_success:
   - npm start report-coverage
   - npm start semantic-release
 notifications:
   email: change
-addons:
-  jwt:
-    secure: PUG+5W5/37H/mFlsVQgVwF9U1ppEM1dR9P7enr19n6gLhtk8m26PtU8ndUXw/HLllnggfEG9/vzS15v0qI9kWFQFio/Te2X1qsBZQONtmAaJhQOJf1JF50IcrS0sqJH0sMOFN+t7+gRkVldu8HUwx/dU8SNLxZ+fJbwqRNv24yAw758VeeHdw7/bhLZgX6hgkBy8Fj3yKzbFMi5ckM8IuMgTPkcIE+vs358Y9+t2uOXXOw/7PEdU32+sLkt5gmfkbh9F/8UFxx82tfdPNPQQxjdOvi9RM9+M08kTqwMcyaaV+GZVM580oQE6nrjGMlQEwXvK4zKJHtSG/6mziUUS+XOv8PpvWvxIp340i/LUx6oHdNQ9qn7qOvluRgBToZuJ+a8iBMahn4X3+sNammCriG2pRZlu8RopS5+sW4SrkadkzZpgTOb6VvrU1dxgQGBvV1QU8FAQ4ejp6CMBAw4WlzYk9qAD7YKbxITUGDU5d5u3Wjd7atHNByS6EAAQsROUpHQX6QQo2OdiGyFr5Ze8bWfSJiDMqqi4ncV2Zrj++6wHh516+35E5oWEZL2xZ0p3Z696svAyEWUu0znBWgDr4j9yhXq50fUL8sbAwol1pu6Q/aC51R22PUieNVy/DRI5UjBhnVbc+n97KJi6oUl7eNK10qQ+s+qh/eekePBToC4=
