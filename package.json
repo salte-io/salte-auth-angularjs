@@ -45,7 +45,6 @@
     "deindent": "^0.1.0",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.9.1",
-    "eslint-loader": "^1.0.0",
     "eslint-plugin-compat": "^2.0.0",
     "eslint-plugin-mocha": "^4.0.0",
     "file-loader": "^1.0.0",
