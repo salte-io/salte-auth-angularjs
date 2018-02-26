@@ -1,14 +1,11 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   output: {
     pathinfo: true
   },
   module: {
     rules: [{
-      enforce: 'pre',
-      test: /\.js$/,
-      include: /tests/,
-      loader: 'eslint-loader'
-    }, {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
@@ -18,5 +15,8 @@ module.exports = {
       loader: 'html-loader'
     }]
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
+  optimization: {
+    minimize: false
+  }
 };
