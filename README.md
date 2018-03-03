@@ -69,10 +69,10 @@ module.config((SalteAuthServiceProvider) => {
   // });
 
   SalteAuthServiceProvider.setup({
-    providerUrl: 'https://salte-io.auth0.com',
+    providerUrl: 'https://salte-alpha.auth0.com',
     responseType: 'id_token',
     redirectUrl: location.origin,
-    clientId: 'Hzl9Rvu_Ws_s1QKIhI2TXi8NZRn672FC',
+    clientId: 'mM6h2LHJikwdbkvdoiyE8kHhL7gcV8Wb',
     scope: 'openid',
 
     endpoints: [
