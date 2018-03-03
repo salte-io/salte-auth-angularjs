@@ -9,6 +9,10 @@
 
 <!-- Example: The page turns pink. -->
 
+### Live Demo
+
+<!-- Example: https://glitch.com/edit/#!/remix/salte-auth-angularjs-demo -->
+
 ### Steps to reproduce
 
 <!-- Example
