@@ -31,9 +31,7 @@ describe('provider(SalteAuthService)', () => {
         provider: 'auth0'
       });
       expect(auth).to.deep.equal(window.salte.auth);
-      expect(auth.$config).to.deep.equal({
-        provider: 'auth0'
-      });
+      expect(auth.$config.provider).to.equal('auth0');
     });
   });
 });
