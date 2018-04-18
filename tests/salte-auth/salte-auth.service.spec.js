@@ -12,7 +12,7 @@ describe('service(SalteAuthService)', () => {
   let $rootScope, SalteAuthServiceProvider, SalteAuthService, SalteAuthRoutesService, sandbox;
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     if (window.salte && window.salte.auth) {
       delete window.salte.auth;
     }
