@@ -1,5 +1,5 @@
 /**
- * @salte-io/salte-auth-angularjs JavaScript Library v2.0.3
+ * @salte-io/salte-auth-angularjs JavaScript Library v2.0.4
  *
  * @license MIT (https://github.com/salte-io/salte-auth/blob/master/LICENSE)
  *
@@ -7,11 +7,11 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("salte-auth"), require("angular"));
+		module.exports = factory(require("@salte-io/salte-auth"), require("angular"));
 	else if(typeof define === 'function' && define.amd)
-		define("salte-auth-angularjs", ["salte-auth", "angular"], factory);
+		define("salte-auth-angularjs", ["@salte-io/salte-auth", "angular"], factory);
 	else if(typeof exports === 'object')
-		exports["salte-auth-angularjs"] = factory(require("salte-auth"), require("angular"));
+		exports["salte-auth-angularjs"] = factory(require("@salte-io/salte-auth"), require("angular"));
 	else
 		root["salte-auth-angularjs"] = factory(root["salte.auth"], root["angular"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__salte_io_salte_auth__, __WEBPACK_EXTERNAL_MODULE_angular__) {
@@ -395,9 +395,9 @@ module.exports = __webpack_require__(/*! ./salte-auth.module.js */"./salte-auth.
 /***/ }),
 
 /***/ "@salte-io/salte-auth":
-/*!**********************************************************************************************************!*\
-  !*** external {"root":"salte.auth","commonjs":"salte-auth","commonjs2":"salte-auth","amd":"salte-auth"} ***!
-  \**********************************************************************************************************/
+/*!****************************************************************************************************************************************!*\
+  !*** external {"root":"salte.auth","commonjs":"@salte-io/salte-auth","commonjs2":"@salte-io/salte-auth","amd":"@salte-io/salte-auth"} ***!
+  \****************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
