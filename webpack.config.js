@@ -23,9 +23,9 @@ module.exports = {
     'angular': 'angular',
     '@salte-io/salte-auth': {
       root: 'salte.auth',
-      commonjs: 'salte-auth',
-      commonjs2: 'salte-auth',
-      amd: 'salte-auth'
+      commonjs: '@salte-io/salte-auth',
+      commonjs2: '@salte-io/salte-auth',
+      amd: '@salte-io/salte-auth'
     }
   },
   devtool: 'source-map',
