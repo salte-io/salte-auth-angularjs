@@ -1,5 +1,5 @@
 /**
- * @salte-io/salte-auth-angularjs JavaScript Library v2.0.4
+ * @salte-io/salte-auth-angularjs JavaScript Library v2.1.0
  *
  * @license MIT (https://github.com/salte-io/salte-auth/blob/master/LICENSE)
  *
@@ -235,6 +235,7 @@ _module.provider('SalteAuthService', _salteAuthService2.default);
 _module.run(['SalteAuthService', function (SalteAuthService) {
   window.addEventListener('storage', SalteAuthService.$$onStorageChanged);
   SalteAuthService.$$registerRoutes();
+  SalteAuthService.$$registerEvents();
 }]);
 
 exports.default = _module.name;
@@ -291,6 +292,21 @@ var SalteAuthServiceProvider = function () {
             });
           }
         }, {
+          key: 'on',
+          value: function on(eventType, callback) {
+            if (!this.$listeners[eventType]) {
+              this.$listeners[eventType] = [];
+            }
+
+            this.$listeners[eventType].push(callback);
+          }
+        }, {
+          key: 'off',
+          value: function off(eventType, callback) {
+            var index = this.$listeners[eventType].indexOf(callback);
+            this.$listeners[eventType].splice(index, 1);
+          }
+        }, {
           key: 'loginWithRedirect',
           value: function loginWithRedirect() {
             var _$auth;
@@ -302,14 +318,14 @@ var SalteAuthServiceProvider = function () {
           value: function loginWithIframe() {
             var _$auth2;
 
-            return this.digest((_$auth2 = this.$auth).loginWithIframe.apply(_$auth2, arguments));
+            return (_$auth2 = this.$auth).loginWithIframe.apply(_$auth2, arguments);
           }
         }, {
           key: 'loginWithPopup',
           value: function loginWithPopup() {
             var _$auth3;
 
-            return this.digest((_$auth3 = this.$auth).loginWithPopup.apply(_$auth3, arguments));
+            return (_$auth3 = this.$auth).loginWithPopup.apply(_$auth3, arguments);
           }
         }, {
           key: 'logoutWithRedirect',
@@ -323,19 +339,19 @@ var SalteAuthServiceProvider = function () {
           value: function logoutWithIframe() {
             var _$auth5;
 
-            return this.digest((_$auth5 = this.$auth).logoutWithIframe.apply(_$auth5, arguments));
+            return (_$auth5 = this.$auth).logoutWithIframe.apply(_$auth5, arguments);
           }
         }, {
           key: 'logoutWithPopup',
           value: function logoutWithPopup() {
             var _$auth6;
 
-            return this.digest((_$auth6 = this.$auth).logoutWithPopup.apply(_$auth6, arguments));
+            return (_$auth6 = this.$auth).logoutWithPopup.apply(_$auth6, arguments);
           }
         }, {
           key: 'retrieveAccessToken',
           value: function retrieveAccessToken() {
-            return this.digest(this.$auth.retrieveAccessToken());
+            return this.$auth.retrieveAccessToken();
           }
         }, {
           key: '$$onStorageChanged',
@@ -353,6 +369,32 @@ var SalteAuthServiceProvider = function () {
             this.$auth.$config.routes = this.$auth.$config.routes.concat(SalteAuthRoutesService.ngroute);
           }
         }, {
+          key: '$$registerEvents',
+          value: function $$registerEvents() {
+            var _this = this;
+
+            var eventTypes = ['login', 'logout', 'refresh'];
+
+            var _loop = function _loop(i) {
+              var eventType = eventTypes[i];
+              _this.$auth.on(eventType, function (error, data) {
+                var listeners = _this.$listeners[eventType];
+
+                if (listeners) {
+                  for (var _i = 0; _i < listeners.length; _i++) {
+                    listeners[_i](error, data);
+                  }
+                }
+
+                $rootScope.$digest();
+              });
+            };
+
+            for (var i = 0; i < eventTypes.length; i++) {
+              _loop(i);
+            }
+          }
+        }, {
           key: 'profile',
           get: function get() {
             return this.$auth.profile;
@@ -364,6 +406,14 @@ var SalteAuthServiceProvider = function () {
               return null;
             }
             return window.salte.auth;
+          }
+        }, {
+          key: '$listeners',
+          get: function get() {
+            if (!this.$$listeners) {
+              this.$$listeners = {};
+            }
+            return this.$$listeners;
           }
         }]);
 
