@@ -17,16 +17,29 @@ export default class SalteAuthServiceProvider {
         });
       }
 
+      static on(eventType, callback) {
+        if (!this.$listeners[eventType]) {
+          this.$listeners[eventType] = [];
+        }
+
+        this.$listeners[eventType].push(callback);
+      }
+
+      static off(eventType, callback) {
+        const index = this.$listeners[eventType].indexOf(callback);
+        this.$listeners[eventType].splice(index, 1);
+      }
+
       static loginWithRedirect(...args) {
         return this.$auth.loginWithRedirect(...args);
       }
 
       static loginWithIframe(...args) {
-        return this.digest(this.$auth.loginWithIframe(...args));
+        return this.$auth.loginWithIframe(...args);
       }
 
       static loginWithPopup(...args) {
-        return this.digest(this.$auth.loginWithPopup(...args));
+        return this.$auth.loginWithPopup(...args);
       }
 
       static logoutWithRedirect(...args) {
@@ -34,15 +47,15 @@ export default class SalteAuthServiceProvider {
       }
 
       static logoutWithIframe(...args) {
-        return this.digest(this.$auth.logoutWithIframe(...args));
+        return this.$auth.logoutWithIframe(...args);
       }
 
       static logoutWithPopup(...args) {
-        return this.digest(this.$auth.logoutWithPopup(...args));
+        return this.$auth.logoutWithPopup(...args);
       }
 
       static retrieveAccessToken() {
-        return this.digest(this.$auth.retrieveAccessToken());
+        return this.$auth.retrieveAccessToken();
       }
 
       static get profile() {
@@ -56,6 +69,13 @@ export default class SalteAuthServiceProvider {
         return window.salte.auth;
       }
 
+      static get $listeners() {
+        if (!this.$$listeners) {
+          this.$$listeners = {};
+        }
+        return this.$$listeners;
+      }
+
       static $$onStorageChanged(event) {
         if (event.storageArea.length && event.key.indexOf('salte.auth') === -1) return;
 
@@ -67,6 +87,25 @@ export default class SalteAuthServiceProvider {
         this.$auth.$config.routes = this.$auth.$config.routes || [];
         this.$auth.$config.routes = this.$auth.$config.routes.concat(SalteAuthRoutesService.uirouter);
         this.$auth.$config.routes = this.$auth.$config.routes.concat(SalteAuthRoutesService.ngroute);
+      }
+
+      static $$registerEvents() {
+        const eventTypes = ['login', 'logout', 'refresh'];
+
+        for (let i = 0; i < eventTypes.length; i++) {
+          const eventType = eventTypes[i];
+          this.$auth.on(eventType, (error, data) => {
+            const listeners = this.$listeners[eventType];
+
+            if (listeners) {
+              for (let i = 0; i < listeners.length; i++) {
+                listeners[i](error, data);
+              }
+            }
+
+            $rootScope.$digest();
+          });
+        }
       }
     };
   }

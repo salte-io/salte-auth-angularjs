@@ -127,7 +127,8 @@ demoModule.config(($locationProvider, SalteAuthServiceProvider) => {
       'https://jsonplaceholder.typicode.com/posts/1'
     ],
 
-    provider: 'auth0'
+    provider: 'auth0',
+    loginType: 'redirect'
   });
 });
 
