@@ -12,6 +12,7 @@ module.provider('SalteAuthService', SalteAuthService);
 module.run(['SalteAuthService', (SalteAuthService) => {
   window.addEventListener('storage', SalteAuthService.$$onStorageChanged);
   SalteAuthService.$$registerRoutes();
+  SalteAuthService.$$registerEvents();
 }]);
 
 export default module.name;
