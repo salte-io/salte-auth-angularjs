@@ -1,6 +1,6 @@
 {
   "name": "@salte-io/salte-auth-angularjs",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "main": "dist/salte-auth-angularjs.min.js",
   "description": "Provides OpenID Connect support to AngularJS applications through the addition of a simple configuration.",
   "homepage": "https://github.com/salte-io/salte-auth-angularjs",
@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@salte-io/salte-auth": "^2.0.0"
+    "@salte-io/salte-auth": "^2.2.0"
   },
   "peerDependencies": {
     "angular": "^1.5.8"
