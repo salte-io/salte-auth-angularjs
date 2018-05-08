@@ -57,6 +57,66 @@ describe('service(SalteAuthService)', () => {
     });
   });
 
+  describe('function(on)', () => {
+    it('should support having no listeners registered', () => {
+      SalteAuthService.$auth.$fire('login', 'Error', null);
+    });
+
+    it('should support registering an event listener', () => {
+      const promise = new Promise((resolve, reject) => {
+        SalteAuthService.on('login', (error, data) => {
+          if (error) return reject(error);
+
+          return resolve(data);
+        });
+      });
+
+      SalteAuthService.$auth.$fire('login', 'Error', null);
+
+      return promise.catch((error) => error).then((error) => {
+        expect(error).to.equal('Error');
+      });
+    });
+
+    it('should support multiple listeners', () => {
+      const promises = [];
+
+      promises.push(new Promise((resolve, reject) => {
+        SalteAuthService.on('login', (error, data) => {
+          if (error) return reject(error);
+
+          return resolve(data);
+        });
+      }));
+
+      promises.push(new Promise((resolve, reject) => {
+        SalteAuthService.on('login', (error, data) => {
+          if (error) return reject(error);
+
+          return resolve(data);
+        });
+      }));
+
+      SalteAuthService.$auth.$fire('login', 'Error', null);
+
+      return Promise.all(promises).catch((error) => error).then((error) => {
+        expect(error).to.equal('Error');
+      });
+    });
+  });
+
+  describe('function(off)', () => {
+    it('should support registering an event listener', () => {
+      const callback = sinon.stub();
+
+      expect(SalteAuthService.$listeners.login).to.equal(undefined);
+      SalteAuthService.on('login', callback);
+      expect(SalteAuthService.$listeners.login.length).to.equal(1);
+      SalteAuthService.off('login', callback);
+      expect(SalteAuthService.$listeners.login.length).to.equal(0);
+    });
+  });
+
   describe('function(loginWithRedirect)', () => {
     it('should support logging in with redirect', () => {
       sandbox.stub(SalteAuthService.$auth, 'loginWithRedirect').returns(Promise.resolve());
@@ -69,24 +129,16 @@ describe('service(SalteAuthService)', () => {
   describe('function(loginWithIframe)', () => {
     it('should run a $digest when signing in', () => {
       sandbox.stub(SalteAuthService.$auth, 'loginWithIframe').returns(Promise.resolve());
-      const $digestSpy = sandbox.spy($rootScope, '$digest');
-      expect($digestSpy.callCount).to.equal(0);
 
-      return SalteAuthService.loginWithIframe().then(() => {
-        expect($digestSpy.callCount).to.equal(1);
-      });
+      return SalteAuthService.loginWithIframe();
     });
   });
 
   describe('function(loginWithPopup)', () => {
     it('should run a $digest when signing in', () => {
       sandbox.stub(SalteAuthService.$auth, 'loginWithPopup').returns(Promise.resolve());
-      const $digestSpy = sandbox.spy($rootScope, '$digest');
-      expect($digestSpy.callCount).to.equal(0);
 
-      return SalteAuthService.loginWithPopup().then(() => {
-        expect($digestSpy.callCount).to.equal(1);
-      });
+      return SalteAuthService.loginWithPopup();
     });
   });
 
@@ -102,36 +154,24 @@ describe('service(SalteAuthService)', () => {
   describe('function(logoutWithIframe)', () => {
     it('should run a $digest when signing out', () => {
       sandbox.stub(SalteAuthService.$auth, 'logoutWithIframe').returns(Promise.resolve());
-      const $digestSpy = sandbox.spy($rootScope, '$digest');
-      expect($digestSpy.callCount).to.equal(0);
 
-      return SalteAuthService.logoutWithIframe().then(() => {
-        expect($digestSpy.callCount).to.equal(1);
-      });
+      return SalteAuthService.logoutWithIframe();
     });
   });
 
   describe('function(logoutWithPopup)', () => {
     it('should run a $digest when signing out', () => {
       sandbox.stub(SalteAuthService.$auth, 'logoutWithPopup').returns(Promise.resolve());
-      const $digestSpy = sandbox.spy($rootScope, '$digest');
-      expect($digestSpy.callCount).to.equal(0);
 
-      return SalteAuthService.logoutWithPopup().then(() => {
-        expect($digestSpy.callCount).to.equal(1);
-      });
+      return SalteAuthService.logoutWithPopup();
     });
   });
 
   describe('function(retrieveAccessToken)', () => {
     it('should run a $digest when signing out', () => {
       sandbox.stub(SalteAuthService.$auth, 'retrieveAccessToken').returns(Promise.resolve());
-      const $digestSpy = sandbox.spy($rootScope, '$digest');
-      expect($digestSpy.callCount).to.equal(0);
 
-      return SalteAuthService.retrieveAccessToken().then(() => {
-        expect($digestSpy.callCount).to.equal(1);
-      });
+      return SalteAuthService.retrieveAccessToken();
     });
   });
 

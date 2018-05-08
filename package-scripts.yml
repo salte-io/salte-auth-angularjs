@@ -14,7 +14,7 @@ scripts:
       description: Executes the Test Suite on Sauce Labs
   serve:
     default:
-      script: webpack-dev-server --mode development --config webpack.server.config.js
+      script: webpack-dev-server --mode development --config webpack.server.config.js --port 8081
       description: Starts a server at http://localhost:8080
     https:
       script: webpack-dev-server --mode development --https --port 443 --config webpack.server.config.js
