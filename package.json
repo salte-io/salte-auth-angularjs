@@ -19,7 +19,6 @@
   },
   "scripts": {
     "start": "nps",
-    "prepublishOnly": "yarn start build",
     "postpublish": "publish-latest --user-email bot@salte.io --user-name salte-bot",
     "precommit": "remove-lockfiles"
   },
@@ -31,6 +30,7 @@
     "angular": "^1.5.8"
   },
   "devDependencies": {
+    "@semantic-release/exec": "^3.0.2",
     "@uirouter/angularjs": "^1.0.6",
     "angular": "^1.0.0",
     "angular-mocks": "^1.0.0",
@@ -66,7 +66,7 @@
     "promise-polyfill": "^8.0.0",
     "publish-latest": "^1.1.2",
     "remove-lockfiles": "^2.0.0",
-    "semantic-release": "^12.2.2",
+    "semantic-release": "^15.0.0",
     "sinon": "^6.0.0",
     "uuid": "^3.0.0",
     "webpack": "^4.0.0",
