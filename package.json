@@ -37,7 +37,7 @@
     "angular-route": "^1.0.0",
     "angular-ui-router": "^1.0.5",
     "babel-core": "^6.0.0",
-    "babel-loader": "^7.0.0",
+    "babel-loader": "^8.0.0",
     "babel-preset-env": "^1.0.0",
     "chai": "^4.0.0",
     "coveralls": "^3.0.0",
