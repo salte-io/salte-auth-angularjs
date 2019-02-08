@@ -98,8 +98,8 @@ module.run((SalteAuthService) => {
 [npm-downloads-image]: https://img.shields.io/npm/dm/@salte-io/salte-auth-angularjs.svg?style=flat
 [npm-url]: https://npmjs.org/package/@salte-io/salte-auth-angularjs
 
-[travis-ci-image]: https://img.shields.io/travis/salte-io/salte-auth-angularjs/master.svg?style=flat
-[travis-ci-url]: https://travis-ci.org/salte-io/salte-auth-angularjs
+[travis-ci-image]: https://img.shields.io/travis/com/salte-io/salte-auth-angularjs/master.svg?style=flat
+[travis-ci-url]: https://travis-ci.com/salte-io/salte-auth-angularjs
 
 [coveralls-image]: https://img.shields.io/coveralls/salte-io/salte-auth-angularjs/master.svg
 [coveralls-url]: https://coveralls.io/github/salte-io/salte-auth-angularjs
