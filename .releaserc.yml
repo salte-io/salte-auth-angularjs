@@ -5,7 +5,7 @@ verifyConditions:
 prepare:
   - '@semantic-release/npm'
   - path: '@semantic-release/exec'
-    cmd: yarn start build
+    cmd: npm start build
   - path: '@semantic-release/git'
     assets:
       - package.json
