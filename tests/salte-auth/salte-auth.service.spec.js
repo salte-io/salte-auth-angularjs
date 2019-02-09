@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import angular from 'angular';
 
 import salteAuth from '../../src/salte-auth.module.js';
 
@@ -179,7 +180,7 @@ describe('service(SalteAuthService)', () => {
     it('should return the profile from "salte.auth"', () => {
       const profile = SalteAuthService.profile;
       expect(profile).to.not.be.undefined;
-      expect(profile).to.deep.equal(salte.auth.profile);
+      expect(profile).to.deep.equal(window.salte.auth.profile);
     });
   });
 

@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import angular from 'angular';
 
 import salteAuth from '../../src/salte-auth.module.js';
 

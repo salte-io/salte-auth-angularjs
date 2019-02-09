@@ -1,21 +1,16 @@
-extends: google
+extends: eslint:recommended
+parserOptions:
+  sourceType: module
+  ecmaVersion: 6
 env:
   browser: true
+  node: true
 plugins:
   - compat
 globals:
-  Logging: true
-parserOptions:
-  sourceType: module
+  Promise: true
 rules:
   compat/compat: 2
-  comma-dangle:
-    - error
-    - arrays: never
-      objects: never
-      imports: never
-      exports: never
-      functions: never
   max-nested-callbacks: 0
   no-warning-comments: 0
   require-jsdoc: 0
