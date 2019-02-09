@@ -1,6 +1,5 @@
 # Salte Auth Angular
 
-[![Gitter](https://badges.gitter.im/salte-io/salte-auth-angularjs.svg)](https://gitter.im/salte-io/salte-auth-angularjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
 [![Travis][travis-ci-image]][travis-ci-url]
