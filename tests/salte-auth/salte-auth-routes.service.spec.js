@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import angular from 'angular';
 import uiRouterModule from '@uirouter/angularjs';
 import uiRouterPreOneModule from 'angular-ui-router';
 import ngRouteModule from 'angular-route';
