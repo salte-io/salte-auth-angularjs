@@ -29,12 +29,11 @@ module.exports = function(config) {
       browserName: 'internet explorer',
       version: '10'
     },
-    // TODO: Enable this once https://github.com/karma-runner/karma/issues/3198 is resolved
-    // Safari10: {
-    //   base: 'SauceLabs',
-    //   browserName: 'safari',
-    //   version: '10'
-    // },
+    Safari10: {
+      base: 'SauceLabs',
+      browserName: 'safari',
+      version: '10'
+    },
     Safari9: {
       base: 'SauceLabs',
       browserName: 'safari',
@@ -45,14 +44,6 @@ module.exports = function(config) {
       browserName: 'safari',
       version: '8'
     }
-    // TODO: For some reason Safari 7 gets fails to load
-    // the test page, every other browser seems to work fine.
-    // Safari7: {
-    //   base: 'SauceLabs',
-    //   browserName: 'safari',
-    //   platform: 'OS X 10.9',
-    //   version: '7'
-    // }
   };
 
   const karmaConfig = {
@@ -93,7 +84,7 @@ module.exports = function(config) {
     sauceLabs: {
       testName: 'salte-io/salte-auth-angularjs',
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      startConnect: true
+      startConnect: false
     },
 
     customLaunchers: customLaunchers,

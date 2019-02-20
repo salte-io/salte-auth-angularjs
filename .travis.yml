@@ -13,5 +13,7 @@ script:
 after_success:
   - npm start report-coverage
   - npm start semantic-release
+addons:
+  sauce_connect: true
 notifications:
   email: change
