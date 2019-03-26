@@ -1,9 +1,10 @@
-extends: eslint:recommended
+extends:
+  - eslint:recommended
+  - plugin:compat/recommended
 parserOptions:
   sourceType: module
   ecmaVersion: 6
 env:
-  browser: true
   node: true
 plugins:
   - compat
@@ -25,3 +26,6 @@ rules:
   no-confusing-arrow: 2
   prefer-arrow-callback: 2
   switch-colon-spacing: 0
+settings:
+  polyfills:
+    - Promise

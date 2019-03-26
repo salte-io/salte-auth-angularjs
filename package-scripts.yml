@@ -20,15 +20,8 @@ scripts:
       script: webpack-dev-server --mode development --https --port 443 --config webpack.server.config.js
       description: Starts a server at https://localhost
   build:
-    default:
-      script: nps build.dev && nps build.prod
-      description: Builds both a minified and unminified artifact
-    dev:
-      script: webpack --progress --colors --mode development
-      description: Builds an unminified artifact
-    prod:
-      script: webpack --progress --colors --mode production
-      description: Builds a minified artifact
+    script: webpack --progress --colors --mode none
+    description: Builds both a minified and unminified artifact
   report-coverage:
     script: coveralls < coverage/lcov.info
     description: Reports code coverage information to Coveralls
