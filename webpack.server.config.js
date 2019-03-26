@@ -1,4 +1,5 @@
-const config = require('./webpack.config.js');
+const common = require('./webpack.common.config.js');
+const config = common({ minified: false });
 
 config.externals = [];
 config.entry.vendor = [

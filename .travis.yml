@@ -6,6 +6,7 @@ branches:
   only:
     - master
     - /^greenkeeper/.*$/
+    - /^ci/.*$
 script:
   - npm start lint
   - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then yarn start test.sauce; fi
