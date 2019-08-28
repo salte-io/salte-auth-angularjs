@@ -31,6 +31,6 @@
     "tests"
   ],
   "dependencies": {
-    "salte-auth": "salte-io/salte-auth#^2.0.0"
+    "salte-auth": "salte-auth/salte-auth#^2.0.0"
   }
 }

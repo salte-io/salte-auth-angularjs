@@ -20,11 +20,11 @@ module.exports = function({ minified, coverage, test }) {
     },
     externals: test ? {} : {
       'angular': 'angular',
-      '@salte-io/salte-auth': {
+      '@salte-auth/salte-auth': {
         root: 'salte.auth',
-        commonjs: '@salte-io/salte-auth',
-        commonjs2: '@salte-io/salte-auth',
-        amd: '@salte-io/salte-auth'
+        commonjs: '@salte-auth/salte-auth',
+        commonjs2: '@salte-auth/salte-auth',
+        amd: '@salte-auth/salte-auth'
       }
     },
     devtool: test ? 'inline-source-map' : 'source-map',
