@@ -1,4 +1,4 @@
-import { SalteAuth } from '@salte-io/salte-auth';
+import { SalteAuth } from '@salte-auth/salte-auth';
 
 export default class SalteAuthServiceProvider {
   setup(config) {
