@@ -24,11 +24,6 @@ module.exports = function(config) {
       browserName: 'internet explorer',
       version: '11'
     },
-    InternetExplorer10: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '10'
-    },
     Safari10: {
       base: 'SauceLabs',
       browserName: 'safari',
