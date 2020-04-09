@@ -48,7 +48,7 @@
     "file-loader": "^5.0.1",
     "husky": "^4.0.2",
     "istanbul-instrumenter-loader": "^3.0.0",
-    "karma": "^4.0.0",
+    "karma": "^5.0.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.0",
     "karma-mocha": "^1.0.0",
