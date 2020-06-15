@@ -58,7 +58,7 @@
     "karma-sinon": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "mocha": "^7.0.1",
+    "mocha": "^8.0.1",
     "nps": "^5.0.0",
     "promise-polyfill": "^8.0.0",
     "remove-lockfiles": "^2.0.0",
