@@ -2,12 +2,10 @@
 
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
-[![Travis][travis-ci-image]][travis-ci-url]
+[![CI Build][github-actions-image]][github-actions-url]
 [![Coveralls][coveralls-image]][coveralls-url]
 
-[![Commitizen friendly][commitizen-image]][commitizen-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
-[![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 
 An Angular 1.x extension to [salte-auth](https://github.com/salte-io/salte-auth) that automatically registers any secured routes for `ng-route` and `ui-router`.
 
@@ -97,17 +95,11 @@ module.run((SalteAuthService) => {
 [npm-downloads-image]: https://img.shields.io/npm/dm/@salte-io/salte-auth-angularjs.svg?style=flat
 [npm-url]: https://npmjs.org/package/@salte-io/salte-auth-angularjs
 
-[travis-ci-image]: https://img.shields.io/travis/com/salte-io/salte-auth-angularjs/master.svg?style=flat
-[travis-ci-url]: https://travis-ci.com/salte-io/salte-auth-angularjs
+[github-actions-image]: https://github.com/salte-io/salte-auth-angularjs/actions/workflows/ci.yml/badge.svg?branch=master
+[github-actions-url]: https://github.com/salte-io/salte-auth-angularjs/actions/workflows/ci.yml
 
 [coveralls-image]: https://img.shields.io/coveralls/salte-io/salte-auth-angularjs/master.svg
 [coveralls-url]: https://coveralls.io/github/salte-io/salte-auth-angularjs
 
-[commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
-[commitizen-url]: https://commitizen.github.io/cz-cli/
-
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-
-[greenkeeper-url]: https://greenkeeper.io
-[greenkeeper-image]: https://badges.greenkeeper.io/salte-io/salte-auth-angularjs.svg
