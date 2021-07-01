@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const deindent = require('deindent');
-const { name, version, contributors, browserslist } = require('./package.json');
+const { name, version, contributors } = require('./package.json');
 
 module.exports = function({ minified, coverage, test }) {
   return {
@@ -32,21 +32,13 @@ module.exports = function({ minified, coverage, test }) {
       rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules\/(?!(whatwg-url|@webcomponents|lit-html|lit-element|@polymer)\/).*/,
-        options: {
-          presets: [['@babel/preset-env', {
-            modules: false,
-            targets: {
-              browsers: browserslist
-            }
-          }]]
-        }
+        exclude: /node_modules\/(?!(whatwg-url|@webcomponents|lit-html|lit-element|@polymer|chai)\/).*/,
       }].concat(coverage ? [{
         enforce: 'pre',
         test: /\.js$/,
         exclude: /tests|node_modules/,
         use: {
-          loader: 'istanbul-instrumenter-loader',
+          loader: '@jsdevtools/coverage-istanbul-loader',
           options: { esModules: true }
         }
       }] : [])
