@@ -7,7 +7,7 @@
   "bugs": "https://github.com/salte-io/salte-auth-angularjs/issues",
   "contributors": [
     "Dave Woodward <dave@salte.io>",
-    "Nick Woodward <nick@salte.io"
+    "Cecilia Woodward <ceci@salte.io>"
   ],
   "keywords": [
     "salte-auth",
@@ -18,7 +18,8 @@
     "url": "https://github.com/salte-io/salte-auth-angularjs.git"
   },
   "scripts": {
-    "start": "nps"
+    "start": "nps",
+    "prepare": "husky install"
   },
   "license": "MIT",
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@jsdevtools/coverage-istanbul-loader": "^3.0.5",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@uirouter/angularjs": "^1.0.6",
@@ -44,43 +46,30 @@
     "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-compat": "^3.0.0",
-    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-mocha": "^9.0.0",
     "file-loader": "^6.0.0",
-    "husky": "^4.0.2",
-    "istanbul-instrumenter-loader": "^3.0.0",
-    "karma": "^5.0.3",
+    "husky": "^7.0.0",
+    "karma": "^6.0.0",
+    "karma-browserstack-launcher": "^1.6.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.0",
     "karma-mocha": "^2.0.1",
     "karma-mocha-reporter": "2.2.5",
     "karma-polyfill": "^1.0.0",
-    "karma-sauce-launcher": "^4.1.4",
     "karma-sinon": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.2",
-    "mocha": "^8.0.1",
+    "karma-webpack": "^5.0.0-alpha.5",
+    "mocha": "^9.0.0",
     "nps": "^5.0.0",
     "promise-polyfill": "^8.0.0",
     "remove-lockfiles": "^2.0.0",
     "semantic-release": "^17.0.0",
-    "sinon": "^9.0.0",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^4.3.1",
+    "sinon": "9.2.4",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "remove-lockfiles"
-    }
-  },
-  "browserslist": [
-    "last 2 chrome versions",
-    "last 2 firefox versions",
-    "last 2 edge versions",
-    "IE >= 10",
-    "Safari >= 7"
-  ]
+  }
 }

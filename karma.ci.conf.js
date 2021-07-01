@@ -2,42 +2,12 @@ const common = require('./webpack.common.config.js');
 
 module.exports = function(config) {
   const customLaunchers = {
-    ChromeBeta: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: 'beta'
-    },
-    Chrome: {
-      base: 'SauceLabs',
-      browserName: 'chrome'
-    },
-    Firefox: {
-      base: 'SauceLabs',
-      browserName: 'firefox'
-    },
-    Edge: {
-      base: 'SauceLabs',
-      browserName: 'microsoftedge'
-    },
     InternetExplorer11: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: '11'
-    },
-    Safari10: {
-      base: 'SauceLabs',
-      browserName: 'safari',
-      version: '10'
-    },
-    Safari9: {
-      base: 'SauceLabs',
-      browserName: 'safari',
-      version: '9'
-    },
-    Safari8: {
-      base: 'SauceLabs',
-      browserName: 'safari',
-      version: '8'
+      base: 'BrowserStack',
+      browser: 'IE',
+      browser_version: '11',
+      os: 'Windows',
+      os_version: '10'
     }
   };
 
@@ -46,7 +16,8 @@ module.exports = function(config) {
 
     frameworks: [
       'mocha',
-      'sinon'
+      'sinon',
+      'webpack'
     ],
 
     files: [
@@ -56,7 +27,6 @@ module.exports = function(config) {
     preprocessors: {
       'tests/index.js': ['webpack', 'sourcemap']
     },
-
 
     webpack: common({
       minified: false,
@@ -69,7 +39,7 @@ module.exports = function(config) {
       stats: 'errors-only'
     },
 
-    reporters: ['mocha', 'saucelabs'],
+    reporters: ['mocha', 'BrowserStack'],
 
     mochaReporter: {
       showDiff: true
@@ -80,12 +50,6 @@ module.exports = function(config) {
     colors: true,
 
     logLevel: config.LOG_INFO,
-
-    sauceLabs: {
-      testName: 'salte-io/salte-auth-angularjs',
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      startConnect: false
-    },
 
     customLaunchers: customLaunchers,
     browsers: Object.keys(customLaunchers),

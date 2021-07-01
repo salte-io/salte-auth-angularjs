@@ -1,12 +1,14 @@
 const common = require('./webpack.common.config.js');
 
+
 module.exports = function(config) {
   config.set({
     basePath: '',
 
     frameworks: [
       'mocha',
-      'sinon'
+      'sinon',
+      'webpack'
     ],
 
     files: [
