@@ -20,7 +20,7 @@ scripts:
       script: webpack-dev-server --mode development --https --port 443 --config webpack.server.config.js
       description: Starts a server at https://localhost
   build:
-    script: webpack --progress --colors --mode none
+    script: webpack --progress --mode none
     description: Builds both a minified and unminified artifact
   report-coverage:
     script: coveralls < coverage/lcov.info
