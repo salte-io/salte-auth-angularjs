@@ -95,10 +95,10 @@ module.run((SalteAuthService) => {
 [npm-downloads-image]: https://img.shields.io/npm/dm/@salte-io/salte-auth-angularjs.svg?style=flat
 [npm-url]: https://npmjs.org/package/@salte-io/salte-auth-angularjs
 
-[github-actions-image]: https://github.com/salte-io/salte-auth-angularjs/actions/workflows/ci.yml/badge.svg?branch=master
+[github-actions-image]: https://github.com/salte-io/salte-auth-angularjs/actions/workflows/ci.yml/badge.svg?branch=main
 [github-actions-url]: https://github.com/salte-io/salte-auth-angularjs/actions/workflows/ci.yml
 
-[coveralls-image]: https://img.shields.io/coveralls/salte-io/salte-auth-angularjs/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/salte-io/salte-auth-angularjs/main.svg
 [coveralls-url]: https://coveralls.io/github/salte-io/salte-auth-angularjs
 
 [semantic-release-url]: https://github.com/semantic-release/semantic-release

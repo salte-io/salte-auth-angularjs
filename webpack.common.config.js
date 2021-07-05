@@ -52,7 +52,7 @@ module.exports = function({ minified, coverage, test }) {
           /**
            * ${name} JavaScript Library v${version}
            *
-           * @license MIT (https://github.com/salte-io/salte-auth-angularjs/blob/master/LICENSE)
+           * @license MIT (https://github.com/salte-io/salte-auth-angularjs/blob/main/LICENSE)
            *
            * Made with ♥ by ${contributors.join(', ')}
            */
