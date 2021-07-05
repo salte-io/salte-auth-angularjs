@@ -1,4 +1,4 @@
-branch: master
+branch: main
 verifyConditions:
   - '@semantic-release/npm'
   - '@semantic-release/git'
