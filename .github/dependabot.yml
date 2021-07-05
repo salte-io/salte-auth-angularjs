@@ -10,26 +10,6 @@ updates:
   - dependency-name: "@salte-auth/salte-auth"
     versions:
     - "^3.0.0"
-  - dependency-name: webpack
+  - dependency-name: sinon
     versions:
-    - 5.24.2
-    - 5.24.4
-    - 5.25.1
-    - 5.27.1
-    - 5.28.0
-    - 5.30.0
-    - 5.31.2
-  - dependency-name: karma
-    versions:
-    - 6.0.1
-    - 6.0.3
-    - 6.1.0
-    - 6.1.1
-    - 6.2.0
-    - 6.3.1
-  - dependency-name: husky
-    versions:
-    - 5.0.9
-    - 5.1.0
-    - 5.1.2
-    - 5.1.3
+    - "> 9"
